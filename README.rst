@@ -1,5 +1,6 @@
 PHP Bottle Web Framework
 ========================
+PHP Bottle - это PHP фреймворк, вдохновлённый минималистичностью PyBottle.
 
 Exampe
 ------
@@ -13,6 +14,7 @@ Exampe
          */
         function hello($name) {
             return "<h1>Hello, {$name}!</h1>";
+        }
 
 
 Licence (MIT)
