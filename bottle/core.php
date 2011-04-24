@@ -15,6 +15,7 @@ class Bottle_Core {
      */
     public static function start()
     {
+        // TODO: вынести в функцию?
         $request = new Bottle_Request;
         $response = new Bottle_Response;
 

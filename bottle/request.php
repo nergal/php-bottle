@@ -24,6 +24,7 @@ class Bottle_Request {
      * @return self
      */
     public function __construct() {
+        // TODO: максимально полное отражение запроса
         $this->_uri = $_SERVER['REQUEST_URI'];
     }
 

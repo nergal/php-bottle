@@ -29,7 +29,7 @@ class Bottle_Route {
      * @return void
      */
     public function setMask($route) {
-        $this->_route = $route;
+        $this->_mask = $route;
     }
 
     /**
@@ -38,7 +38,7 @@ class Bottle_Route {
      * @return string
      */
     public function getMask() {
-        return $this->_route;
+        return $this->_mask;
     }
 
     /**
@@ -90,6 +90,7 @@ class Bottle_Route {
         $url = trim($url, '/');
         $route = trim($this->getMask(), '/');
 
+        // TODO: добавить тесты
         $regex = '#^' . preg_replace('#(?:\:([_a-z0-9]+))#', '(?P<$1>[^/]+)', $route) . '$#ui';
         if (preg_match($regex, $url, $matches)) {
             foreach ($matches as $key => $match) {

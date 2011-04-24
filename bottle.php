@@ -9,6 +9,7 @@ define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
  * @reurn boolean
  */
 function __autoload($classname) {
+    // TODO: опциональная склейка в один файл
     $classname = strtolower($classname);
     $filename = APPLICATION_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
 

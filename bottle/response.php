@@ -25,6 +25,7 @@ class Bottle_Response {
             $body = $controller->invokeArgs($parameters);
             $this->setBody($body);
         } else {
+            // TODO: корректная обработка ошибок
             echo '404';
         }
 
@@ -66,6 +67,9 @@ class Bottle_Response {
      * @return void
      */
     public function send() {
+        // TODO: кэширование
+        // TODO: обработка заголовков
+        // TODO: обработка кода ответа
         echo $this->getBody();
     }
 }
