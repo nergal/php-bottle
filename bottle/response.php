@@ -25,8 +25,7 @@ class Bottle_Response {
             $body = $controller->invokeArgs($parameters);
             $this->setBody($body);
         } else {
-            // TODO: корректная обработка ошибок
-            echo '404';
+            throw new Bottle_Exception('No route found');
         }
 
         $this->send();
