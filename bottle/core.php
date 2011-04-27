@@ -34,11 +34,19 @@ class Bottle_Core {
                         $route->setMask($matches['route']);
                         $route->bindController($controller);
 
+
                         if ($route->isServed($request->uri())) {
+                            if (preg_match('#^( |\t)*\*( )?@view (?P<view>.+?)$#umsi', $docline, $matches)) {
+                                $view = new Bottle_View($matches['view']);
+                                $response->setView($view);
+                            }
+
                             $request->setRouter($route);
                             break;
                         }
                     }
+
+
                 }
             }
         }

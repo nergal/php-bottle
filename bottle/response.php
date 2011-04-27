@@ -13,6 +13,11 @@ class Bottle_Response {
     protected $_body = '';
 
     /**
+     * @var Bottle_View
+     */
+    protected $_view = NULL;
+
+    /**
      * Генерация ответа
      *
      * @param Bottle_Request $request
@@ -69,6 +74,34 @@ class Bottle_Response {
         // TODO: кэширование
         // TODO: обработка заголовков
         // TODO: обработка кода ответа
-        echo $this->getBody();
+        $body = $this->getBody();
+        $view = $this->getView();
+
+        if (is_array($body) AND $view !== NULL) {
+            $view->bind($body);
+            echo $view->render(TRUE);
+        } else {
+            echo $body;
+        }
     }
+
+    /**
+     * Назначение враппера ответа
+     *
+     * @param Bottle_View $view
+     * @return void
+     */
+    public function setView(Bottle_View $view) {
+        $this->_view = $view;
+    }
+
+    /**
+     * Getter для враппера ответа
+     *
+     * @return Bottle_View
+     */
+    public function getView() {
+        return $this->_view;
+    }
+
 }

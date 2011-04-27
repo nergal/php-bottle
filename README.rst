@@ -16,6 +16,14 @@ Exampe
             return "<h1>Hello, {$name}!</h1>";
         }
 
+        /**
+         * @route /mul/:num
+         * @view /views/mul.html
+         */
+        function mul($num) {
+            return array('result' => $num * $num);
+        }
+
 
 Licence (MIT)
 -------------

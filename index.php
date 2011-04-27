@@ -16,3 +16,11 @@ function index() {
 function test($name, $data) {
     return "<h2>Ololo, {$name} with {$data}!</h2>";
 }
+
+/**
+ * @route /mvc2/:id
+ * @view /views/test.html
+ */
+function test2($id) {
+    return array('data' => $id * $id);
+}
