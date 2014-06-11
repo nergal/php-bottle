@@ -13,7 +13,7 @@ class Bottle {
      * Startup class
      *
      * @param string $classname
-     * @reurn boolean
+     * @return boolean
      */
     public function autoload($classname) {
         // TODO: опциональная склейка в один файл
