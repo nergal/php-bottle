@@ -13,7 +13,7 @@ class Bottle_Route {
     protected $_mask;
 
     /**
-     * @var ReflectionFunctionAbstract
+     * @var ReflectionFunction
      */
     protected $_controller;
 
@@ -44,17 +44,17 @@ class Bottle_Route {
     /**
      * Устанавливает отражение контроллера
      *
-     * @param ReflectionFunctionAbstract $instance
+     * @param ReflectionFunction $instance
      * @return void
      */
-    public function bindController(ReflectionFunctionAbstract $instance) {
+    public function bindController(ReflectionFunction $instance) {
         $this->_controller = $instance;
     }
 
     /**
      * Забирает отражение контроллера
      *
-     * @return ReflectionFunctionAbstract
+     * @return ReflectionFunction
      */
     public function getController() {
         return $this->_controller;
