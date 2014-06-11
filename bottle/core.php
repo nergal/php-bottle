@@ -1,21 +1,21 @@
 <?php
 
 /**
- * Основной класс для подгрузки модулей
+ * The main Bottle class, loading modules
  *
  * @package Bottle
  * @author Nergal
  */
 class Bottle_Core {
     /**
-     * Инициализация роутинга и контроллеров
+     * Routing and controller initialization
      *
      * @static
      * @return void
      */
     public static function start()
     {
-        // TODO: вынести в функцию?
+        // TODO: Put into a function?
         $request = new Bottle_Request;
         $response = new Bottle_Response;
 

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Объект ответа
+ * Response object
  *
  * @package Bottle
  * @author Nergal
  */
 class Bottle_Response {
     /**
-     * @var string
+     * @var string|array
      */
     protected $_body = '';
 
@@ -18,7 +18,7 @@ class Bottle_Response {
     protected $_view = NULL;
 
     /**
-     * Генерация ответа
+     * Response generation
      *
      * @param Bottle_Request $request
      */
@@ -37,9 +37,9 @@ class Bottle_Response {
     }
 
     /**
-     * Устанавливает содержимое ответа
+     * Sets the response content
      *
-     * @param string body
+     * @param string|array body
      * @return void
      */
     public function setBody($body) {
@@ -47,35 +47,38 @@ class Bottle_Response {
     }
 
     /**
-     * Добавляет данные к ответу
+     * Adds data to content
      *
      * @param string $body
      * @return void
      */
     public function appendBody($body) {
+        // todo: what if body is an array?
         $this->_body.= $body;
     }
 
     /**
-     * Возвращает содержимое ответа
+     * Returns the response's content
      *
-     * @return string
+     * @return string|array
      */
     public function getBody() {
         return $this->_body;
     }
 
     /**
-     * Отправка запроса клиенту
+     * Sending the request to the client
      *
      * @return void
      */
     public function send() {
-        // TODO: кэширование
-        // TODO: обработка заголовков
-        // TODO: обработка кода ответа
+        // TODO: Caching
+        // TODO: Header processing
+        // TODO: Response code treatment
         $body = $this->getBody();
         $view = $this->getView();
+
+        // $body can be an array if the @view annotation is used
 
         if (is_array($body) AND $view !== NULL) {
             $view->bind($body);
@@ -86,7 +89,7 @@ class Bottle_Response {
     }
 
     /**
-     * Назначение враппера ответа
+     * Response view wrapper assignment
      *
      * @param Bottle_View $view
      * @return void
@@ -96,7 +99,7 @@ class Bottle_Response {
     }
 
     /**
-     * Getter для враппера ответа
+     * Getter for the response view wrapper
      *
      * @return Bottle_View
      */

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Враппер овета
+ * View wrapper
  *
  * @package Bottle
  * @author Nergal
@@ -18,7 +18,7 @@ class Bottle_View {
     protected $_params = array();
 
     /**
-     * Создание враппера
+     * Creating a view
      *
      * @param string $filename
      * @return self
@@ -30,7 +30,7 @@ class Bottle_View {
     }
 
     /**
-     * Установка имени файла для враппера
+     * Setting the file name for the wrapper
      *
      * @param string $filename
      * @return void
@@ -46,7 +46,7 @@ class Bottle_View {
     }
 
     /**
-     * Назначение переменных окружения
+     * Sets the view variables returned by the controller
      *
      * @param array $params
      * @return void
@@ -56,7 +56,7 @@ class Bottle_View {
     }
 
     /**
-     * Рендеринг результата
+     * Rendering the view
      *
      * @param boolean $return_output
      * @return string|void

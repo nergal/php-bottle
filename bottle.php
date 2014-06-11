@@ -3,14 +3,14 @@
 define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 
 /**
- * Класс инициализации фреймворка
+ * Framework initialization class
  *
  * @package bottle
  * @author nergal
  */
 class Bottle {
     /**
-     * Автозагрузка классов
+     * Startup class
      *
      * @param string $classname
      * @reurn boolean
@@ -28,7 +28,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик исключений
+     * Exception handler
      *
      * @param Exception $e
      * @return void
@@ -91,7 +91,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик fatal error
+     * Processing fatal errors
      *
      * @todo некорректно работает - отстреливаются пред. обработчики
      * @return void
@@ -110,7 +110,7 @@ class Bottle {
     }
 
     /**
-     * Назначение обработчиков
+     * Setting up global handlers
      *
      * @construct
      * @return void

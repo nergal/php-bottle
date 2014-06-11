@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Объект роутера запросов
+ * Router object
  *
  * @package Bottle
  * @author Nergal
@@ -23,7 +23,7 @@ class Bottle_Route {
     protected $_parameters = array();
 
     /**
-     * Устанавливает маску роутинга
+     * Sets the routing mask
      *
      * @param string
      * @return void
@@ -33,7 +33,7 @@ class Bottle_Route {
     }
 
     /**
-     * Возвращает строку роутинга
+     * Returns the routing mask
      *
      * @return string
      */
@@ -42,7 +42,7 @@ class Bottle_Route {
     }
 
     /**
-     * Устанавливает отражение контроллера
+     * Sets the reflection controller
      *
      * @param ReflectionFunction $instance
      * @return void
@@ -52,7 +52,7 @@ class Bottle_Route {
     }
 
     /**
-     * Забирает отражение контроллера
+     * Returns the controller ReflectionFunction object
      *
      * @return ReflectionFunction
      */
@@ -61,7 +61,7 @@ class Bottle_Route {
     }
 
     /**
-     * Установка параметра запроса
+     * Setting query parameters
      *
      * @param string $name
      * @param mixed $value
@@ -72,7 +72,7 @@ class Bottle_Route {
     }
 
     /**
-     * Выборка всех параметров запроса
+     * Select all query params
      *
      * @return array
      */
@@ -81,7 +81,7 @@ class Bottle_Route {
     }
 
     /**
-     * Обслуживает ли данный роут текущий запрос
+     * Can the current route serve the given URL?
      *
      * @param string $url
      * @return boolean

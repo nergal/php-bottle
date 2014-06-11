@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Объект запроса
+ * The Request object
  *
  * @package Bottle
  * @author Nergal
@@ -25,7 +25,7 @@ class Bottle_Request {
     public $route = NULL;
 
     /**
-     * Конструктор класса
+     * The class constructor
      *
      * @constructor
      * @return self
@@ -37,11 +37,11 @@ class Bottle_Request {
                            strlen($_SERVER['DOCUMENT_ROOT'])));
         $this->_docroot = $docroot;
         $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
-        echo '<pre>'.$this->_docroot.'<br />'.$this->_uri.'</pre>';
+        echo '<pre>'.$this->_dddocroot.'<br />'.$this->_uri.'</pre>';
     }
 
     /**
-     * URL текущей страницы
+     * URL of the current page
      *
      * @return string
      */
@@ -50,7 +50,7 @@ class Bottle_Request {
     }
 
     /**
-     * Setter для роутинга
+     * Setter for routing
      *
      * @param Bottle_Router $route
      * @return void
@@ -60,7 +60,7 @@ class Bottle_Request {
     }
 
     /**
-     * Getter для роутинга
+     * Getter for routing
      *
      * @return Bottle_Route
      */
