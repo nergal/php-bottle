@@ -91,7 +91,7 @@ class Bottle_Route {
         $route = trim($this->getMask(), '/');
 
         // TODO: добавить тесты
-        $regex = '#^' . preg_replace('#(?:\:([_a-z0-9]+))#', '(?P<$1>[^/]+)', $route) . '$#ui';
+        $regex = '#^' . preg_replace('#(?:\:([_a-z0-9]+))#', '(?P<$1>.+)', $route) . '$#uUi';
         if (preg_match($regex, $url, $matches)) {
             foreach ($matches as $key => $match) {
                 if (!is_numeric($key)) {
