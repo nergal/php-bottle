@@ -37,7 +37,6 @@ class Bottle_Request {
                            strlen($_SERVER['DOCUMENT_ROOT'])));
         $this->_docroot = $docroot;
         $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
-        echo '<pre>'.$this->_dddocroot.'<br />'.$this->_uri.'</pre>';
     }
 
     /**
