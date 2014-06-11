@@ -7,6 +7,13 @@
  * @author Nergal
  */
 class Bottle_Request {
+
+    /**
+     * @var string the optional parent dir (allows bottle to be installed in a 
+     * subdirectory
+     */
+    protected $_docroot = '';
+
     /**
      * @var string
      */
@@ -25,7 +32,12 @@ class Bottle_Request {
      */
     public function __construct() {
         // TODO: максимально полное отражение запроса
-        $this->_uri = $_SERVER['REQUEST_URI'];
+        // truncating the document root
+        $docroot = dirname(substr($_SERVER['SCRIPT_FILENAME'],
+                           strlen($_SERVER['DOCUMENT_ROOT'])));
+        $this->_docroot = $docroot;
+        $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        echo '<pre>'.$this->_docroot.'<br />'.$this->_uri.'</pre>';
     }
 
     /**
