@@ -34,7 +34,9 @@ class Bottle_Request {
         // TODO: максимально полное отражение запроса
         // truncating the document root
         $docroot = dirname(substr($_SERVER['SCRIPT_FILENAME'],
-                           strlen(rtrim($_SERVER['DOCUMENT_ROOT'],'/'))));
+                           mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
+                                           '/'),
+                                     'utf-8')));
         $this->_docroot = $docroot;
         $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
     }
