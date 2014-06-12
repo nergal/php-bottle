@@ -25,7 +25,21 @@ class Bottle_Request {
      */
     public function __construct() {
         // @TODO most accurate request reflection
-        $this->_uri = $_SERVER['REQUEST_URI'];
+        // truncating the document root
+        $docroot = dirname(substr($_SERVER['SCRIPT_FILENAME'],
+                           mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
+                                           '/'),
+                                     'utf-8')));
+        // fixing the dirname() behaviour on windows: we have to delete any \
+        $docroot = str_replace('\\', '', $docroot);
+        $this->_docroot = $docroot;
+        // truncating GET params
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
+        if(strpos($uri, '?') != -1) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+        }
+        $this->_uri = $uri;
+        $this->_params = $_REQUEST;
     }
 
     /**
