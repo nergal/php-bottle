@@ -15,6 +15,7 @@ class Bottle_Core {
      */
     public static function start()
     {
+        global $request, $response;
         // TODO: Put into a function?
         $request = new Bottle_Request;
         $response = new Bottle_Response;
