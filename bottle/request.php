@@ -25,6 +25,11 @@ class Bottle_Request {
     public $route = NULL;
 
     /**
+     * @var array
+     */
+    protected $_params = array();
+
+    /**
      * The class constructor
      *
      * @constructor
@@ -38,7 +43,13 @@ class Bottle_Request {
                                            '/'),
                                      'utf-8')));
         $this->_docroot = $docroot;
-        $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        // truncating GET params
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        if(strpos($uri, '?') != -1) {
+            $uri = substr($uri, strpos($uri, '?'));
+        }
+        $this->_uri = $uri;
+        $this->_params = $_PARAMS;
     }
 
     /**
@@ -67,5 +78,30 @@ class Bottle_Request {
      */
     public function getRoute() {
         return $this->route;
+    }
+
+    /**
+     * Getter for all GET/POST params
+     *
+     * @return array
+     */
+    public function getParams() {
+        return $this->_params;
+    }
+
+    /**
+     * Getter for one param, optionnally returning a given default value
+     *
+     * @param string $name
+     * @param string $default optional
+     * @return string|false false is returned if the param does not exists and 
+     * no default value is given
+     */
+    public function getParam($name, $default = false) {
+        if(isset($this->_params[$name])) {
+            return $this->_params[$name];
+        } else {
+            return $default;
+        }
     }
 }
