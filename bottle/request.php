@@ -34,7 +34,7 @@ class Bottle_Request {
         // @TODO most accurate request reflection
         // truncating the document root
         $docroot = dirname(substr($_SERVER['SCRIPT_FILENAME'],
-                           strlen($_SERVER['DOCUMENT_ROOT'])));
+                           strlen(rtrim($_SERVER['DOCUMENT_ROOT'],'/'))));
         $this->_docroot = $docroot;
         $this->_uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
     }
