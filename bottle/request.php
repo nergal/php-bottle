@@ -38,15 +38,19 @@ class Bottle_Request {
     public function __construct() {
         // @TODO most accurate request reflection
         // truncating the document root
-        $docroot = dirname(substr($_SERVER['SCRIPT_FILENAME'],
-                           mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
-                                           '/'),
-                                     'utf-8')));
+        $docroot = rtrim(dirname(substr($_SERVER['SCRIPT_FILENAME'],
+                                        mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
+                                                        '/'),
+                                                  'utf-8'
+                                                 )
+                                       )
+                                ),
+                         '/').'/';
         $this->_docroot = $docroot;
         // truncating GET params
         $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
-        if(strpos($uri, '?') != -1) {
-            $uri = substr($uri, strpos($uri, '?'));
+        if(strpos($uri, '?') != false) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
         }
         $this->_uri = $uri;
         $this->_params = $_PARAMS;
