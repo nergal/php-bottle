@@ -3,20 +3,19 @@
 define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 
 /**
- * Класс инициализации фреймворка
+ * Framework initialization
  *
  * @package bottle
  * @author nergal
  */
 class Bottle {
     /**
-     * Автозагрузка классов
+     * Autoload classes
      *
      * @param string $classname
      * @reurn boolean
      */
     public function autoload($classname) {
-        // TODO: опциональная склейка в один файл
         $classname = strtolower($classname);
         $filename = APPLICATION_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
 
@@ -28,7 +27,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик исключений
+     * Exception handler
      *
      * @param Exception $e
      * @return void
@@ -77,7 +76,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик ошибок
+     * Errors handler
      *
      * @param integer $errno
      * @param string $errstr
@@ -91,7 +90,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик fatal error
+     * Fatal error handler
      *
      * @todo некорректно работает - отстреливаются пред. обработчики
      * @return void
@@ -110,7 +109,7 @@ class Bottle {
     }
 
     /**
-     * Назначение обработчиков
+     * Handlers binding
      *
      * @construct
      * @return void

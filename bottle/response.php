@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Объект ответа
+ * Response object
  *
  * @package Bottle
  * @author Nergal
@@ -18,7 +18,7 @@ class Bottle_Response {
     protected $_view = NULL;
 
     /**
-     * Генерация ответа
+     * Response creation
      *
      * @param Bottle_Request $request
      */
@@ -37,7 +37,7 @@ class Bottle_Response {
     }
 
     /**
-     * Устанавливает содержимое ответа
+     * Setup response body
      *
      * @param string body
      * @return void
@@ -47,7 +47,7 @@ class Bottle_Response {
     }
 
     /**
-     * Добавляет данные к ответу
+     * Append data to body
      *
      * @param string $body
      * @return void
@@ -57,7 +57,7 @@ class Bottle_Response {
     }
 
     /**
-     * Возвращает содержимое ответа
+     * Returns body contents
      *
      * @return string
      */
@@ -66,14 +66,14 @@ class Bottle_Response {
     }
 
     /**
-     * Отправка запроса клиенту
+     * Response sending
      *
      * @return void
      */
     public function send() {
-        // TODO: кэширование
-        // TODO: обработка заголовков
-        // TODO: обработка кода ответа
+        // TODO: add caching
+        // TODO: header processing
+        // TODO: response code processing
         $body = $this->getBody();
         $view = $this->getView();
 
@@ -86,7 +86,7 @@ class Bottle_Response {
     }
 
     /**
-     * Назначение враппера ответа
+     * Bind response wrapper
      *
      * @param Bottle_View $view
      * @return void
@@ -96,7 +96,7 @@ class Bottle_Response {
     }
 
     /**
-     * Getter для враппера ответа
+     * Getter for response wrapper
      *
      * @return Bottle_View
      */

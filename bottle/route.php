@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Объект роутера запросов
+ * Requests routing
  *
  * @package Bottle
  * @author Nergal
@@ -23,7 +23,7 @@ class Bottle_Route {
     protected $_parameters = array();
 
     /**
-     * Устанавливает маску роутинга
+     * Set route mask
      *
      * @param string
      * @return void
@@ -33,7 +33,7 @@ class Bottle_Route {
     }
 
     /**
-     * Возвращает строку роутинга
+     * Returns route mask
      *
      * @return string
      */
@@ -42,7 +42,7 @@ class Bottle_Route {
     }
 
     /**
-     * Устанавливает отражение контроллера
+     * Bind controller reflection
      *
      * @param ReflectionFunctionAbstract $instance
      * @return void
@@ -52,7 +52,7 @@ class Bottle_Route {
     }
 
     /**
-     * Забирает отражение контроллера
+     * Get controller reflection
      *
      * @return ReflectionFunctionAbstract
      */
@@ -61,7 +61,7 @@ class Bottle_Route {
     }
 
     /**
-     * Установка параметра запроса
+     * Set request parameter
      *
      * @param string $name
      * @param mixed $value
@@ -72,7 +72,7 @@ class Bottle_Route {
     }
 
     /**
-     * Выборка всех параметров запроса
+     * Get all request parameters
      *
      * @return array
      */
@@ -81,7 +81,7 @@ class Bottle_Route {
     }
 
     /**
-     * Обслуживает ли данный роут текущий запрос
+     * Is current route can serve current request
      *
      * @param string $url
      * @return boolean
@@ -90,7 +90,7 @@ class Bottle_Route {
         $url = trim($url, '/');
         $route = trim($this->getMask(), '/');
 
-        // TODO: добавить тесты
+        // TODO: add some testing
         $regex = '#^' . preg_replace('#(?:\:([_a-z0-9]+))#', '(?P<$1>[^/]+)', $route) . '$#ui';
         if (preg_match($regex, $url, $matches)) {
             foreach ($matches as $key => $match) {

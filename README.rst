@@ -1,6 +1,6 @@
 PHP Bottle Web Framework
 ========================
-PHP Bottle - это PHP фреймворк, вдохновлённый минималистичностью PyBottle.
+PHP Bottle - PHP micro-framework inspired by minimalistic PyBottle
 
 Exampe
 ------

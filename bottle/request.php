@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Объект запроса
+ * Request object
  *
  * @package Bottle
  * @author Nergal
@@ -24,12 +24,12 @@ class Bottle_Request {
      * @return self
      */
     public function __construct() {
-        // TODO: максимально полное отражение запроса
+        // @TODO most accurate request reflection
         $this->_uri = $_SERVER['REQUEST_URI'];
     }
 
     /**
-     * URL текущей страницы
+     * Current URL
      *
      * @return string
      */
@@ -38,7 +38,7 @@ class Bottle_Request {
     }
 
     /**
-     * Setter для роутинга
+     * Setter for routing
      *
      * @param Bottle_Router $route
      * @return void
@@ -48,7 +48,7 @@ class Bottle_Request {
     }
 
     /**
-     * Getter для роутинга
+     * Getter for routing
      *
      * @return Bottle_Route
      */
