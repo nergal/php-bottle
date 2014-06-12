@@ -108,4 +108,13 @@ class Bottle_Request {
             return $default;
         }
     }
+
+    /**
+     * getter for docroot, which is the URL prefix for Bottle
+     *
+     * @return string
+     */
+    public function getDocroot() {
+        return $this->_docroot;
+    }
 }

@@ -22,6 +22,8 @@ class Bottle_Core {
 
         $functions = get_defined_functions();
         $controllers = $functions['user'];
+        $controllers_list = array();
+        $views_list = array();
         foreach($controllers as $controller) {
             if (substr($controller, 0, 2) != '__') {
                 $controller = new ReflectionFunction($controller);
@@ -35,22 +37,35 @@ class Bottle_Core {
                         $route->setMask($matches['route']);
                         $route->bindController($controller);
 
+                        $controllers_list[$controller->getName()] = $route->getMask();
+
 
                         if ($route->isServed($request->uri())) {
                             if (preg_match('#^( |\t)*\*( )?@view (?P<view>.+?)$#umsi', $docline, $matches)) {
                                 $view = new Bottle_View($matches['view']);
                                 $response->setView($view);
+                                $views_list[] = $view;
                             }
 
                             $request->setRouter($route);
-                            break;
+                            //break;
+                        } else {
+                            // fetching all views for the url() function
+                            if (preg_match('#^( |\t)*\*( )?@view (?P<view>.+?)$#umsi', $docline, $matches)) {
+                                $view = new Bottle_View($matches['view']);
+                                $views_list[] = $view;
+                            }
                         }
                     }
-
-
                 }
             }
         }
+
+        // giving the route list to each view
+        foreach($views_list as $view) {
+            $view->setRoutes($controllers_list);
+        }
+
 
         $response->dispatch($request);
     }

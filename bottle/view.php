@@ -18,6 +18,11 @@ class Bottle_View {
     protected $_params = array();
 
     /**
+     * @var array $routes the list of route names
+     */
+    public $routes = array();
+
+    /**
      * Creating a view
      *
      * @param string $filename
@@ -43,6 +48,16 @@ class Bottle_View {
         }
 
         $this->_filename = $realname;
+    }
+
+    /**
+     * sets a route list
+     *
+     * @param array @routes
+     * @return void
+     */
+    public function setRoutes($routes) {
+        $this->routes = $routes;
     }
 
     /**
@@ -73,5 +88,27 @@ class Bottle_View {
         }
 
         echo $output;
+    }
+
+    /**
+     * returns the URL of a given route, filled with optionnal params
+     *
+     * @param string $route the route name
+     * @param array $params optional the associative array of URL params
+     * @return string the matching URL
+     */
+    public function url($route, $params = array()) {
+        global $request;
+        if(!isset($this->routes[$route])) {
+            // the route name does not exist. Maybe we’re linking to a static 
+            // file?
+            return $request->getDocroot().$route;
+        } else {
+            $url = $this->routes[$route];
+            foreach($params as $param_name => $param_value) {
+                $url = str_replace(':'.$param_name, urlencode($param_value), $url);
+            }
+            return rtrim($request->getDocroot(), '/').$url;
+        }
     }
 }
