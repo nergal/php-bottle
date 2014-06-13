@@ -48,12 +48,13 @@ class Bottle_Request {
                          '/').'/';
         $this->_docroot = $docroot;
         // truncating GET params
-        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
         if(strpos($uri, '?') != false) {
             $uri = substr($uri, 0, strpos($uri, '?'));
         }
         $this->_uri = $uri;
         $this->_params = $_REQUEST;
+        echo 'docroot : '.$docroot.', uri : '.$uri.'<br />';
     }
 
     /**
