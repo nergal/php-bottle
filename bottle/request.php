@@ -46,6 +46,9 @@ class Bottle_Request {
                                        )
                                 ),
                          '/').'/';
+        // fixing the dirname() behaviour on windows: we have to delete any \
+        $docroot = str_replace('\\', '', $docroot);
+
         $this->_docroot = $docroot;
         // truncating GET params
         $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
@@ -54,7 +57,6 @@ class Bottle_Request {
         }
         $this->_uri = $uri;
         $this->_params = $_REQUEST;
-        echo 'docroot : '.$docroot.', uri : '.$uri.'<br />';
     }
 
     /**
