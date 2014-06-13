@@ -92,7 +92,6 @@ class Bottle_Route {
 
         // TODO: добавить тесты
         $regex = '#^' . preg_replace('#(?:\:([a-z0-9]+))#', '(?P<$1>.+)', $route) . '$#uUi';
-        var_dump($regex);
         if (preg_match($regex, $url, $matches)) {
             foreach ($matches as $key => $match) {
                 if (!is_numeric($key)) {
