@@ -13,7 +13,7 @@ class Bottle {
      * Autoload classes
      *
      * @param string $classname
-     * @reurn boolean
+     * @return boolean
      */
     public function autoload($classname) {
         $classname = strtolower($classname);
