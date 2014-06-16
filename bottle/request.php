@@ -7,6 +7,13 @@
  * @author Nergal
  */
 class Bottle_Request {
+
+    /**
+     * @var string the optional parent dir (allows bottle to be installed in a 
+     * subdirectory
+     */
+    protected $_docroot = '';
+
     /**
      * @var string
      */
@@ -18,14 +25,35 @@ class Bottle_Request {
     public $route = NULL;
 
     /**
-     * Конструктор класса
+     * @var array
+     */
+    protected $_params = array();
+
+    /**
+     * The class constructor
      *
      * @constructor
      * @return self
      */
     public function __construct() {
         // @TODO most accurate request reflection
-        $this->_uri = $_SERVER['REQUEST_URI'];
+        // truncating the document root
+        $docroot = rtrim(dirname(substr($_SERVER['SCRIPT_FILENAME'],
+                                        mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
+                                                        '/'),
+                                                  'utf-8'
+                                                 )
+                                       )
+                                ),
+                         '/').'/';
+        $this->_docroot = $docroot;
+        // truncating GET params
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        if(strpos($uri, '?') != false) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+        }
+        $this->_uri = $uri;
+        $this->_params = $_PARAMS;
     }
 
     /**
@@ -54,5 +82,30 @@ class Bottle_Request {
      */
     public function getRoute() {
         return $this->route;
+    }
+
+    /**
+     * Getter for all GET/POST params
+     *
+     * @return array
+     */
+    public function getParams() {
+        return $this->_params;
+    }
+
+    /**
+     * Getter for one param, optionnally returning a given default value
+     *
+     * @param string $name
+     * @param string $default optional
+     * @return string|false false is returned if the param does not exists and 
+     * no default value is given
+     */
+    public function getParam($name, $default = false) {
+        if(isset($this->_params[$name])) {
+            return $this->_params[$name];
+        } else {
+            return $default;
+        }
     }
 }
