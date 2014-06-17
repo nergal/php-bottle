@@ -180,4 +180,13 @@ class Bottle_Request {
             return null;
         }
     }
+
+    /**
+     * helper method to know if we’re on an AJAX request
+     *
+     * @return bool
+     */
+    public function isAjax(){
+        return $this->getHeader('X-Requested-With') == 'XMLHttpRequest';
+    }
 }
