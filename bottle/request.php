@@ -61,7 +61,7 @@ class Bottle_Request {
         $this->_params = $_REQUEST;
 
         // getting request headers
-        $this->_headers = $this->parseHeaders($_SERVER);
+        $this->headers = $this->parseHeaders($_SERVER);
     }
 
     /**
@@ -140,15 +140,17 @@ class Bottle_Request {
                 $rx_matches = explode('_', $arh_key);
                 if( count($rx_matches) > 0 and strlen($arh_key) > 2 ) {
                     foreach($rx_matches as $ak_key => $ak_val) {
-                        $rx_matches[$ak_key] = ucfirst($ak_val);
+                        $rx_matches[$ak_key] = ucfirst(strtolower($ak_val));
                     }
                     $arh_key = implode('-', $rx_matches);
-                    // exception for the 'DNT' header, that must stay in uppercase
+
+                    // exception for the DNT header, which must stay uppercase
                     if($arh_key == 'Dnt') {
                         $arh_key = strtoupper($arh_key);
                     }
 
                 }
+
                 $arh[$arh_key] = $val;
             }
         }
