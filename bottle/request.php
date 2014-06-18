@@ -30,6 +30,11 @@ class Bottle_Request {
     protected $_params = array();
 
     /**
+     * @var array
+     */
+    public $headers = array();
+
+    /**
      * The class constructor
      *
      * @constructor
@@ -48,12 +53,15 @@ class Bottle_Request {
                          '/').'/';
         $this->_docroot = $docroot;
         // truncating GET params
-        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
         if(strpos($uri, '?') != false) {
             $uri = substr($uri, 0, strpos($uri, '?'));
         }
         $this->_uri = $uri;
-        $this->_params = $_PARAMS;
+        $this->_params = $_REQUEST;
+
+        // getting request headers
+        $this->headers = $this->parseHeaders($_SERVER);
     }
 
     /**
@@ -107,5 +115,78 @@ class Bottle_Request {
         } else {
             return $default;
         }
+    }
+
+    /**
+     * Request headers parser
+     * Returns an associative array of the headers found in $_SERVER, in 
+     * (normally) correct case.
+     *
+     * The original function is found here: 
+     * http://us2.php.net/manual/fr/function.apache-request-headers.php#70810
+     *
+     * @param array $server
+     * @return array
+     */
+    protected function parseHeaders($server) {
+        $arh = array();
+        $rx_http = '/\AHTTP_/';
+        foreach($server as $key => $val) {
+            if( preg_match($rx_http, $key) ) {
+                $arh_key = preg_replace($rx_http, '', $key);
+                $rx_matches = array();
+                // do some nasty string manipulations to restore the original letter case
+                // this should work in most cases
+                $rx_matches = explode('_', $arh_key);
+                if( count($rx_matches) > 0 and strlen($arh_key) > 2 ) {
+                    foreach($rx_matches as $ak_key => $ak_val) {
+                        $rx_matches[$ak_key] = ucfirst(strtolower($ak_val));
+                    }
+                    $arh_key = implode('-', $rx_matches);
+
+                    // exception for the DNT header, which must stay uppercase
+                    if($arh_key == 'Dnt') {
+                        $arh_key = strtoupper($arh_key);
+                    }
+
+                }
+
+                $arh[$arh_key] = $val;
+            }
+        }
+        return( $arh );
+    }
+
+    /**
+     * getter for all headers
+     *
+     * @return array
+     */
+    public function getHeaders(){
+        return $this->headers;
+    }
+
+
+    /**
+     * getter for a given header
+     *
+     * @param string $header_name
+     * @return string|null
+     */
+    public function getHeader($header_name) {
+        if(isset($this->headers[$header_name])) {
+            return $this->headers[$header_name];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * helper method to know if we’re on an AJAX request
+     *
+     * @return bool
+     */
+    public function isAjax(){
+        return $this->getHeader('X-Requested-With') == 'XMLHttpRequest';
     }
 }

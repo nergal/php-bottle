@@ -125,4 +125,6 @@ class Bottle {
     }
 }
 
+// creating the global $request and $response objects
+$request = $response = null;
 new Bottle;
