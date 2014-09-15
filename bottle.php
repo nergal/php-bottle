@@ -3,6 +3,7 @@
 if(!defined('APPLICATION_PATH')) {
     define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 }
+define('BOTTLE_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 
 /**
  * Framework initialization class
@@ -20,7 +21,7 @@ class Bottle {
     public function autoload($classname) {
         // TODO: опциональная склейка в один файл
         $classname = strtolower($classname);
-        $filename = APPLICATION_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
+        $filename = BOTTLE_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
 
         if (file_exists($filename)) {
             require_once $filename;
