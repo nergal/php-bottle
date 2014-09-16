@@ -13,9 +13,19 @@ class Bottle_Response {
     protected $_body = '';
 
     /**
+     * @var array
+     */
+    protected $_headers = array();
+
+    /**
      * @var Bottle_View
      */
     protected $_view = NULL;
+
+    /**
+     * @var bool
+     */
+    protected $_sendBody = true;
 
     /**
      * Response generation
@@ -73,7 +83,12 @@ class Bottle_Response {
      */
     public function send() {
         // TODO: Caching
-        // TODO: Header processing
+        foreach($this->_headers as $header_name => $header_value) {
+            header($header_name.': '.$header_value);
+        }
+        if(!$this->_sendBody) {
+            return;
+        }
         // TODO: Response code treatment
         $body = $this->getBody();
         $view = $this->getView();
@@ -105,6 +120,71 @@ class Bottle_Response {
      */
     public function getView() {
         return $this->_view;
+    }
+
+    /**
+     * Getter for all response headers
+     *
+     * @return array
+     */
+    public function getHeaders() {
+        return $this->_headers;
+    }
+ 
+    /**
+     * Getter for a single response header, returns false if it does not exist.
+     *
+     * @param string $header
+     *
+     * @return string|false
+     */
+    public function getHeader($header) {
+        if(isset($this->_headers[$header])) {
+            return $this->_headers[$header];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Setter for a response header.
+     *
+     * @param string $header the name of the header
+     * @param string $value
+     *
+     */
+    public function setHeader($header, $value) {
+        $this->_headers[$header] = $value;
+    }
+
+    /**
+     * delete a response header
+     *
+     * @param string $header
+     */
+    public function delHeader($header) {
+        if(isset($this->_headers[$header])) {
+            unset($this->_headers[$header]);
+        }
+    }
+
+    /**
+     * sends a Location header, redirecting to a given URL or route.
+     *
+     * @param array|string $location
+     * @return null
+     */
+    public function redirect($location) {
+        if(is_array($location)) {
+            $url = $this->getView()->url($location[0], $location[1]);
+        } elseif($location[0] != '/') {
+            $url = $this->getView()->url($location);
+        } else {
+            $url = $location;
+        }
+        $this->setHeader('Location', $url);
+        $this->_sendBody = false;
+        return null;
     }
 
 }
