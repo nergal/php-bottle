@@ -11,6 +11,14 @@ function index() {
 }
 
 /**
+ * @route /mvc2/:id
+ * @view /views/test.html
+ */
+function test2($id) {
+    return array('data' => $id * $id);
+}
+
+/**
  * @route /mvc2/test/:name/:data
  */
 function test($name, $data) {
@@ -18,9 +26,10 @@ function test($name, $data) {
 }
 
 /**
- * @route /mvc2/:id
- * @view /views/test.html
+ * @Route /test
+ * @View /views/test.html
  */
-function test2($id) {
-    return array('data' => $id * $id);
+function debug(){
+    global $response;
+    return $response->redirect(array('test', array('name' => 'bla', 'data' => '1010101')));
 }
