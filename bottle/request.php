@@ -2,7 +2,29 @@
 
 /**
  * Request object
->
+ *
+ * @package Bottle
+ * @author Nergal
+ */
+class Bottle_Request {
+
+    /**
+    * @var string the optional parent dir (allows bottle to be installed in a
+    * subdirectory
+    */
+
+    protected $_docroot = '';
+    /**
+    * @var string
+    */
+    protected $_uri = '';
+
+    /**
+    * @var Bottle_Route
+    */
+    public $route = NULL;
+
+    /*
      * @var array
      */
     protected $_params = array();

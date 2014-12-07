@@ -6,6 +6,7 @@
  * @package Bottle
  * @author Nergal
  */
+
 class Bottle_Response {
     /**
      * @var string|array
