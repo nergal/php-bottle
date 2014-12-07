@@ -1,9 +1,18 @@
 <?php
 
 if(!defined('APPLICATION_PATH')) {
-    define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+    if(substr(__FILE__, 0, 7) == 'phar://') {
+        $filename = substr(substr(__FILE__, 0, strrpos(__FILE__, DIRECTORY_SEPARATOR)), 7);
+        define('APPLICATION_PATH', realpath(dirname($filename)) . DIRECTORY_SEPARATOR);
+    } else {
+        define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+    }
 }
-define('BOTTLE_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+if(substr(__FILE__, 0, 7) == 'phar://') {
+    define('BOTTLE_PATH', substr(__FILE__, 0, strrpos(__FILE__, DIRECTORY_SEPARATOR) + 1));
+} else {
+    define('BOTTLE_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+}
 
 /**
  * Framework initialization class

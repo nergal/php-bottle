@@ -1,6 +1,6 @@
 <?php
 
-require 'bottle.php';
+require 'src/bottle.php';
 
 /**
  * @route /mvc2/
