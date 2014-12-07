@@ -13,13 +13,12 @@ define('BOTTLE_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
  */
 class Bottle {
     /**
-     * Startup class
+     * Autoload classes
      *
      * @param string $classname
      * @return boolean
      */
     public function autoload($classname) {
-        // TODO: опциональная склейка в один файл
         $classname = strtolower($classname);
         $filename = BOTTLE_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
 
@@ -80,7 +79,7 @@ class Bottle {
     }
 
     /**
-     * Обработчик ошибок
+     * Errors handler
      *
      * @param integer $errno
      * @param string $errstr
@@ -94,7 +93,7 @@ class Bottle {
     }
 
     /**
-     * Processing fatal errors
+     * Fatal error handler
      *
      * @todo некорректно работает - отстреливаются пред. обработчики
      * @return void

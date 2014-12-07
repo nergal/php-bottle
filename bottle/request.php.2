@@ -2,15 +2,37 @@
 
 /**
  * Request object
->
-     * @var array
+ *
+ * @package Bottle
+ * @author Nergal
+ */
+class Bottle_Request {
+
+    /**
+     * @var string the optional parent dir (allows bottle to be installed in a 
+     * subdirectory
      */
-    protected $_params = array();
+    protected $_docroot = '';
+
+    /**
+     * @var string
+     */
+    protected $_uri = '';
+
+    /**
+     * @var Bottle_Route
+     */
+    public $route = NULL;
 
     /**
      * @var array
      */
     public $headers = array();
+
+    /**
+     * @var array
+     */
+    protected $_params = array();
 
     /**
      * The class constructor
@@ -29,20 +51,17 @@
                                        )
                                 ),
                          '/').'/';
-        // fixing the dirname() behaviour on windows: we have to delete any \
-        $docroot = str_replace('\\', '', $docroot);
-
         $this->_docroot = $docroot;
         // truncating GET params
-        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
+        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot));
         if(strpos($uri, '?') != false) {
             $uri = substr($uri, 0, strpos($uri, '?'));
         }
         $this->_uri = $uri;
-        $this->_params = $_REQUEST;
+        $this->_params = $_PARAMS;
 
         // getting request headers
-        $this->headers = $this->parseHeaders($_SERVER);
+        $this->_headers = $this->parseHeaders($_SERVER);
     }
 
     /**
@@ -74,40 +93,6 @@
     }
 
     /**
-     * Getter for all GET/POST params
-     *
-     * @return array
-     */
-    public function getParams() {
-        return $this->_params;
-    }
-
-    /**
-     * Getter for one param, optionnally returning a given default value
-     *
-     * @param string $name
-     * @param string $default optional
-     * @return string|false false is returned if the param does not exists and 
-     * no default value is given
-     */
-    public function getParam($name, $default = false) {
-        if(isset($this->_params[$name])) {
-            return $this->_params[$name];
-        } else {
-            return $default;
-        }
-    }
-
-    /**
-     * getter for docroot, which is the URL prefix for Bottle
-     *
-     * @return string
-     */
-    public function getDocroot() {
-        return $this->_docroot;
-    }
-
-    /**
      * Request headers parser
      * Returns an associative array of the headers found in $_SERVER, in 
      * (normally) correct case.
@@ -130,17 +115,15 @@
                 $rx_matches = explode('_', $arh_key);
                 if( count($rx_matches) > 0 and strlen($arh_key) > 2 ) {
                     foreach($rx_matches as $ak_key => $ak_val) {
-                        $rx_matches[$ak_key] = ucfirst(strtolower($ak_val));
+                        $rx_matches[$ak_key] = ucfirst($ak_val);
                     }
                     $arh_key = implode('-', $rx_matches);
-
-                    // exception for the DNT header, which must stay uppercase
+                    // exception for the 'DNT' header, that must stay in uppercase
                     if($arh_key == 'Dnt') {
                         $arh_key = strtoupper($arh_key);
                     }
 
                 }
-
                 $arh[$arh_key] = $val;
             }
         }
@@ -171,12 +154,28 @@
         }
     }
 
-    /**
-     * helper method to know if we’re on an AJAX request
+    /*
+     * Getter for all GET/POST params
      *
-     * @return bool
+     * @return array
      */
-    public function isAjax(){
-        return $this->getHeader('X-Requested-With') == 'XMLHttpRequest';
+    public function getParams() {
+        return $this->_params;
+    }
+
+    /**
+     * Getter for one param, optionnally returning a given default value
+     *
+     * @param string $name
+     * @param string $default optional
+     * @return string|false false is returned if the param does not exists and 
+     * no default value is given
+     */
+    public function getParam($name, $default = false) {
+        if(isset($this->_params[$name])) {
+            return $this->_params[$name];
+        } else {
+            return $default;
+        }
     }
 }

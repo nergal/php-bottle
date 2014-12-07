@@ -130,7 +130,7 @@ class Bottle_Response {
     public function getHeaders() {
         return $this->_headers;
     }
- 
+
     /**
      * Getter for a single response header, returns false if it does not exist.
      *

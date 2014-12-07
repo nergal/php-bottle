@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Router object
+ * Requests routing
  *
  * @package Bottle
  * @author Nergal
@@ -90,7 +90,7 @@ class Bottle_Route {
         $url = trim($url, '/');
         $route = trim($this->getMask(), '/');
 
-        // TODO: добавить тесты
+        // TODO: add some testing
         $regex = '#^' . preg_replace('#(?:\:([a-z0-9]+))#', '(?P<$1>.+)', $route) . '$#uUi';
         if (preg_match($regex, $url, $matches)) {
             foreach ($matches as $key => $match) {
