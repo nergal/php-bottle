@@ -156,6 +156,41 @@ EOL;
         $this->assertEquals('Redirected', $content);
     }
 
+    function testHeader() {
+        if(!function_exists('curl_init')) {
+            $this->assertTrue(false, 'cURL is not available. Passing.');
+        }
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:'.$this->port.'/header');
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $headers_raw = explode("\r\n", substr($response, 0, strpos($response, "\r\n\r\n")));
+        $headers = [];
+        foreach($headers_raw as $header) {
+            if(strpos($header, ':') !== false) {
+                list($k, $v) = explode(':', $header);
+                $headers[$k] = trim($v);
+            }
+        }
+
+        curl_close($ch);
+
+        $this->assertArrayHasKey('Content-type', $headers);
+        $this->assertEquals('text/plain', $headers['Content-type']);
+
+    }
+
+    function testUrl() {
+        $content = file_get_contents('http://localhost:'.$this->port.'/url');
+        $this->assertEquals('/redirected', $content);
+
+        $content = file_get_contents('http://localhost:'.$this->port.'/url2');
+        $this->assertEquals('/param/name', $content);
+    }
+
     /**
      * Kills the background PHP tasks
      */

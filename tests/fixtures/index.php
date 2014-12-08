@@ -47,12 +47,39 @@ function exception() {
  */
 function redirect() {
     global $response;
-    $response->redirect('redirected');
+    $response->redirect('redirected_function');
 }
 
 /**
  * @route /redirected
  */
-function redirected() {
+function redirected_function() {
     return 'Redirected';
+}
+
+/**
+ * @route /header
+ */
+function header_route() {
+    global $response;
+    $response->setHeader('Content-type', 'text/plain');
+    return 'Header';
+}
+
+/**
+ * @route /url
+ * @view /views/view.html
+ */
+function url() {
+    global $response;
+    return $response->getView()->url('redirected_function');
+}
+
+/**
+ * @route /url2
+ * @view /views/view.html
+ */
+function url2() {
+    global $response;
+    return $response->getView()->url('param', ['name' => 'name']);
 }
