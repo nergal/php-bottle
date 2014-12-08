@@ -1,5 +1,6 @@
 <?php
 
+define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 require 'src/bottle.php';
 
 /**
