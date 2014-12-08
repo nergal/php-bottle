@@ -40,3 +40,19 @@ function view($name) {
 function exception() {
     throw new Exception('You shouldn’t be here.');
 }
+
+/**
+ * @route /redirect
+ * @view /views/view.html
+ */
+function redirect() {
+    global $response;
+    $response->redirect('redirected');
+}
+
+/**
+ * @route /redirected
+ */
+function redirected() {
+    return 'Redirected';
+}

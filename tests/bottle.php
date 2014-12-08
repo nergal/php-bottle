@@ -123,8 +123,41 @@ EOL;
         curl_close($ch);
     }
 
+    function testHeaderRedirect() {
+        if(!function_exists('curl_init')) {
+            $this->assertTrue(false, 'cURL is not available. Passing.');
+        }
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:'.$this->port.'/redirect');
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $headers_raw = explode("\r\n", substr($response, 0, strpos($response, "\r\n\r\n")));
+        $headers = [];
+        foreach($headers_raw as $header) {
+            if(strpos($header, ':') !== false) {
+                list($k, $v) = explode(':', $header);
+                $headers[$k] = trim($v);
+            }
+        }
+
+        curl_close($ch);
+
+        $this->assertEquals(302, $httpcode);
+        $this->assertArrayHasKey('Location', $headers);
+        $this->assertEquals('/redirected', $headers['Location']);
+    }
+
+    function testRedirect() {
+        $content = file_get_contents('http://localhost:'.$this->port.'/redirect');
+        $this->assertEquals('Redirected', $content);
+    }
+
     /**
-     * Kills the background PHP task
+     * Kills the background PHP tasks
      */
     public function TearDown() {
         //echo 'Killing fork...'.PHP_EOL;
@@ -132,7 +165,7 @@ EOL;
         foreach($forks as $fork) {
             if($fork != $this->pid) {
                 //posix_kill($fork, SIGTERM);
-                exec('kill '.$fork.' 2>&1> /dev/null');
+                exec('kill '.$fork.'  2>&1 > /dev/null');
             }
         }
     }
