@@ -25,3 +25,18 @@ function index() {
 function param($name) {
     return 'Param: '.$name;
 }
+
+/**
+ * @route /view/:name
+ * @view /views/view.html
+ */
+function view($name) {
+    return ['name' => $name];
+}
+
+/**
+ * @route /exception
+ */
+function exception() {
+    throw new Exception('You shouldn’t be here.');
+}

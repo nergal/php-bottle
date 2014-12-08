@@ -8,6 +8,8 @@
  * @license MIT
  */
 
+define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+
 class BottleTest extends PHPUnit_Framework_TestCase {
 
     private $port = 8999;
@@ -29,7 +31,7 @@ class BottleTest extends PHPUnit_Framework_TestCase {
             exit('Error forking.'.PHP_EOL);
         } else if($pid == 0) {
             ob_start();
-            chdir('fixtures');
+            chdir(APPLICATION_PATH . DIRECTORY_SEPARATOR . 'fixtures');
             exec($this->command);
             ob_end_clean();
             exit();
@@ -52,8 +54,74 @@ class BottleTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('Param: test', $content);
     }
 
-    // @todo: write tests for various HTTP vars, such as headers, redirects, etc.
-    // we don’t want to add dependencies only for tests
+    public function testView() {
+        $content = file_get_contents('http://localhost:'.$this->port.'/view/test');
+        $assertedContent = <<<'EOL'
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>view</title>
+	</head>
+	<body>
+        test
+	</body>
+</html>
+
+EOL;
+        $this->assertEquals($assertedContent, $content);
+    }
+
+    function testHeaderOK() {
+        if(!function_exists('curl_init')) {
+            $this->assertTrue(false, 'cURL is not available. Passing.');
+        }
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:'.$this->port);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $this->assertEquals(200, $httpcode);
+
+        curl_close($ch);
+    }
+
+    function testHeader404() {
+        if(!function_exists('curl_init')) {
+            $this->assertTrue(false, 'cURL is not available. Passing.');
+        }
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:'.$this->port.'/err');
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $this->assertEquals(404, $httpcode);
+
+        curl_close($ch);
+    }
+
+    function testHeader500() {
+        if(!function_exists('curl_init')) {
+            $this->assertTrue(false, 'cURL is not available. Passing.');
+        }
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:'.$this->port.'/exception');
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $this->assertEquals(500, $httpcode);
+
+        curl_close($ch);
+    }
 
     /**
      * Kills the background PHP task
