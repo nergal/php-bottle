@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Response wrapper
+ * View wrapper
  *
  * @package Bottle
  * @author Nergal
@@ -18,7 +18,12 @@ class Bottle_View {
     protected $_params = array();
 
     /**
-     * Wrapper creation
+     * @var array $routes the list of route names
+     */
+    public $routes = array();
+
+    /**
+     * Creating a view
      *
      * @param string $filename
      * @return self
@@ -30,7 +35,7 @@ class Bottle_View {
     }
 
     /**
-     * Set filename for wrapper
+     * Setting the file name for the wrapper
      *
      * @param string $filename
      * @return void
@@ -46,7 +51,17 @@ class Bottle_View {
     }
 
     /**
-     * Env variables binding
+     * sets a route list
+     *
+     * @param array @routes
+     * @return void
+     */
+    public function setRoutes($routes) {
+        $this->routes = $routes;
+    }
+
+    /**
+     * Sets the view variables returned by the controller
      *
      * @param array $params
      * @return void
@@ -56,7 +71,7 @@ class Bottle_View {
     }
 
     /**
-     * Results rendering
+     * Rendering the view
      *
      * @param boolean $return_output
      * @return string|void
@@ -73,5 +88,27 @@ class Bottle_View {
         }
 
         echo $output;
+    }
+
+    /**
+     * returns the URL of a given route, filled with optionnal params
+     *
+     * @param string $route the route name
+     * @param array $params optional the associative array of URL params
+     * @return string the matching URL
+     */
+    public function url($route, $params = array()) {
+        global $request;
+        if(!isset($this->routes[$route])) {
+            // the route name does not exist. Maybe we’re linking to a static 
+            // file?
+            return $request->getDocroot().$route;
+        } else {
+            $url = $this->routes[$route];
+            foreach($params as $param_name => $param_value) {
+                $url = str_replace(':'.$param_name, urlencode($param_value), $url);
+            }
+            return rtrim($request->getDocroot(), '/').$url;
+        }
     }
 }

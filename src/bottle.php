@@ -1,9 +1,21 @@
 <?php
 
-define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+if(!defined('APPLICATION_PATH')) {
+    if(substr(__FILE__, 0, 7) == 'phar://') {
+        $filename = substr(substr(__FILE__, 0, strrpos(__FILE__, DIRECTORY_SEPARATOR)), 7);
+        define('APPLICATION_PATH', realpath(dirname($filename)) . DIRECTORY_SEPARATOR);
+    } else {
+        define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+    }
+}
+if(substr(__FILE__, 0, 7) == 'phar://') {
+    define('BOTTLE_PATH', substr(__FILE__, 0, strrpos(__FILE__, DIRECTORY_SEPARATOR) + 1));
+} else {
+    define('BOTTLE_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+}
 
 /**
- * Framework initialization
+ * Framework initialization class
  *
  * @package bottle
  * @author nergal
@@ -17,7 +29,7 @@ class Bottle {
      */
     public function autoload($classname) {
         $classname = strtolower($classname);
-        $filename = APPLICATION_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
+        $filename = BOTTLE_PATH . str_replace('_', DIRECTORY_SEPARATOR, $classname) . '.php';
 
         if (file_exists($filename)) {
             require_once $filename;
@@ -109,7 +121,7 @@ class Bottle {
     }
 
     /**
-     * Handlers binding
+     * Setting up global handlers
      *
      * @construct
      * @return void

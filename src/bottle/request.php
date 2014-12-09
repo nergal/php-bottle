@@ -9,22 +9,22 @@
 class Bottle_Request {
 
     /**
-     * @var string the optional parent dir (allows bottle to be installed in a 
-     * subdirectory
-     */
-    protected $_docroot = '';
+    * @var string the optional parent dir (allows bottle to be installed in a
+    * subdirectory
+    */
 
+    protected $_docroot = '';
     /**
-     * @var string
-     */
+    * @var string
+    */
     protected $_uri = '';
 
     /**
-     * @var Bottle_Route
-     */
+    * @var Bottle_Route
+    */
     public $route = NULL;
 
-    /**
+    /*
      * @var array
      */
     protected $_params = array();
@@ -51,6 +51,9 @@ class Bottle_Request {
                                        )
                                 ),
                          '/').'/';
+        // fixing the dirname() behaviour on windows: we have to delete any \
+        $docroot = str_replace('\\', '', $docroot);
+
         $this->_docroot = $docroot;
         // truncating GET params
         $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
@@ -115,6 +118,15 @@ class Bottle_Request {
         } else {
             return $default;
         }
+    }
+
+    /**
+     * getter for docroot, which is the URL prefix for Bottle
+     *
+     * @return string
+     */
+    public function getDocroot() {
+        return $this->_docroot;
     }
 
     /**

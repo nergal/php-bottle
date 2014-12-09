@@ -23,7 +23,7 @@ class Bottle_Route {
     protected $_parameters = array();
 
     /**
-     * Set route mask
+     * Sets the routing mask
      *
      * @param string
      * @return void
@@ -33,7 +33,7 @@ class Bottle_Route {
     }
 
     /**
-     * Returns route mask
+     * Returns the routing mask
      *
      * @return string
      */
@@ -42,7 +42,7 @@ class Bottle_Route {
     }
 
     /**
-     * Bind controller reflection
+     * Sets the reflection controller
      *
      * @param ReflectionFunction $instance
      * @return void
@@ -52,7 +52,7 @@ class Bottle_Route {
     }
 
     /**
-     * Get controller reflection
+     * Returns the controller ReflectionFunction object
      *
      * @return ReflectionFunction
      */
@@ -61,7 +61,7 @@ class Bottle_Route {
     }
 
     /**
-     * Set request parameter
+     * Setting query parameters
      *
      * @param string $name
      * @param mixed $value
@@ -72,7 +72,7 @@ class Bottle_Route {
     }
 
     /**
-     * Get all request parameters
+     * Select all query params
      *
      * @return array
      */
@@ -81,7 +81,7 @@ class Bottle_Route {
     }
 
     /**
-     * Is current route can serve current request
+     * Can the current route serve the given URL?
      *
      * @param string $url
      * @return boolean
