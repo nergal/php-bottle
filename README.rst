@@ -23,7 +23,7 @@ organize your code as you will. The final line will start Bottle.
      * @route /hello/:name
      */
     function hello($name) {
-        return "<h1>Hello, {$name}!</h1>';
+        return "<h1>Hello, {$name}!</h1>";
     }
 
     /**
