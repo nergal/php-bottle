@@ -13,7 +13,7 @@ Example
 
 Put this into your index.php file. Each function containing a “route” annotation
 is a page, served by a specific URL. Feel free to use `require` statements to
-organize your code as you will. The final line will start Bottle.
+organize your code as you wish. The final line will start Bottle.
 
 ::
 
