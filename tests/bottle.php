@@ -191,6 +191,20 @@ EOL;
         $this->assertEquals('/param/name', $content);
     }
 
+    function testRouteWithNonAscii() {
+        $content = file_get_contents('http://localhost:'.$this->port.'/'.urlencode('subdir_with_éééé/'));
+        $this->assertEquals('Success', $content);
+
+        $content = file_get_contents('http://localhost:'.$this->port.'/'.urlencode('subdir_with_éééé/é'));
+        $this->assertEquals('Successé', $content);
+
+        $content = file_get_contents('http://localhost:'.$this->port.'/'.urlencode('subdir_with_éééé/\''));
+        $this->assertEquals('Success\'', $content);
+
+        $content = file_get_contents('http://localhost:'.$this->port.'/'.urlencode('subdir_with_éééé/ '));
+        $this->assertEquals('Success ', $content);
+    }
+
     /**
      * Kills the background PHP tasks
      */
