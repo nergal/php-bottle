@@ -41,6 +41,7 @@ created in a “views” directory right under your index.php file. Here is the
 matching view:
 
 ::
+
     <!DOCTYPE html>
     <html>
         <head>
@@ -64,6 +65,7 @@ development server!
 In a terminal, jump to your project’s directory, and run:
 
 ::
+
     php -S localhost:8000
 
 Now, just go to http://localhost:8000 . Your Bottle routes will take place at
