@@ -49,7 +49,7 @@ matching view:
             <title>Bottle mul page</title>
         </head>
         <body>
-            <h1>Here is the result: <?= $result ?>
+            <h1>Here is the result: <?= $result ?></h1>
         </body>
     </html>
 
