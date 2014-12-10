@@ -3,7 +3,7 @@
  * Abstraction for test env
  *
  * @package php-bottle
- * @author Artem Poluhovich <me@2mio.com>
+ * @author Damien Nicolas <damien@gordon.re>
  * @version 0.1
  * @license MIT
  */

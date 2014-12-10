@@ -12,12 +12,12 @@ require_once(APPLICATION_PATH . 'classes/bottleTestCase.php');
 require_once(APPLICATION_PATH . '../src/bottle/request.php');
 class testRequest extends Bottle_Request
 {
-	public function __construct() { }
+    public function __construct() { }
 
-	public function getDocroot()
-	{
-		return '/';
-	}
+    public function getDocroot()
+    {
+        return '/';
+    }
 }
 
 $request = new testRequest();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tests for cURL-wrapper used in other tests
  *
@@ -7,7 +8,6 @@
  * @version 0.1
  * @license MIT
  */
-
 class CurlTest extends BottleTestCase {
     private $url;
 
