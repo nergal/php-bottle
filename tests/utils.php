@@ -8,11 +8,12 @@
  * @param string $method optionnal the HTTP method name to use. Defaults to GET
  * @param array $params optionnal the HTTP params to send (must be an
  * associative array)
+ * @param array $options optional curl options
  * @return array an associative array containing the HTTP code ('httpcode' key),
  * the headers list ('headers' key) as another associative array, and the
  * response content ('content' key)
  */
-function send_request($url, $method='GET', array $params=[]) {
+function send_request($url, $method='GET', array $params=[], array $options=[]) {
     if(!function_exists('curl_init')) {
         $this->assertTrue(false, 'cURL is not available. Passing.');
     }
@@ -40,6 +41,10 @@ function send_request($url, $method='GET', array $params=[]) {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    foreach ($options as $key => $value) {
+        curl_setopt($ch, $key, $value);
+    }
 
     $response = curl_exec($ch);
     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);

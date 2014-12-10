@@ -1,33 +1,26 @@
-PHP Bottle Web Framework
-========================
+# PHP Bottle Web Framework [![Build Status](https://secure.travis-ci.org/nergal/php-bottle.png)](https://secure.travis-ci.org/nergal/php-bottle/)
 PHP Bottle - PHP micro-framework inspired by minimalistic PyBottle
 
-Exampe
-------
-::
+## Exampe
+    require_once "bottle.php";
 
-    <?php
-        require_once "bottle.php";
+    /**
+     * @route /hello/:name
+     */
+    function hello($name) {
+        return "<h1>Hello, {$name}!</h1>";
+    }
 
-        /**
-         * @route /hello/:name
-         */
-        function hello($name) {
-            return "<h1>Hello, {$name}!</h1>";
-        }
-
-        /**
-         * @route /mul/:num
-         * @view /views/mul.html
-         */
-        function mul($num) {
-            return array('result' => $num * $num);
-        }
+    /**
+     * @route /mul/:num
+     * @view /views/mul.html
+     */
+    function mul($num) {
+        return array('result' => $num * $num);
+    }
 
 
-Licence (MIT)
--------------
-
+## Licence (MIT)
     Copyright (c) 2010, Marcel Hellkamp.
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -46,4 +39,4 @@ Licence (MIT)
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.}
+    THE SOFTWARE.

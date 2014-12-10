@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php"
+         strict="true"
+         colors="true"
+         verbose="true"
+         timeoutForSmallTests="10">
+  <testsuites>
+    <testsuite name="PHPBottle test suite">
+      <directory suffix="Test.php">tests</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
