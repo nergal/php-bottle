@@ -57,7 +57,7 @@ class Bottle_View {
      * @return void
      */
     public function setRoutes($routes) {
-        $this->routes = $routes;
+        $this->routes = (array) $routes;
     }
 
     /**
@@ -102,13 +102,13 @@ class Bottle_View {
         if(!isset($this->routes[$route])) {
             // the route name does not exist. Maybe we’re linking to a static 
             // file?
-            return $request->getDocroot().$route;
+            return $request->getDocroot() . trim($route, '/');
         } else {
             $url = $this->routes[$route];
             foreach($params as $param_name => $param_value) {
                 $url = str_replace(':'.$param_name, urlencode($param_value), $url);
             }
-            return rtrim($request->getDocroot(), '/').$url;
+            return $request->getDocroot() . trim($url, '/');
         }
     }
 }
