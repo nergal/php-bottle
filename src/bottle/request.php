@@ -12,8 +12,8 @@ class Bottle_Request {
     * @var string the optional parent dir (allows bottle to be installed in a
     * subdirectory
     */
-
     protected $_docroot = '';
+
     /**
     * @var string
     */
@@ -24,7 +24,7 @@ class Bottle_Request {
     */
     public $route = NULL;
 
-    /*
+    /**
      * @var array
      */
     protected $_params = array();
