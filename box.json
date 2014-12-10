@@ -1,0 +1,7 @@
+{
+    "directories": "src",
+    "main": "src/bottle.php",
+    "output": "build/bottle.phar",
+    "shebang": false,
+    "stub": true
+}
