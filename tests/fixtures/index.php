@@ -10,7 +10,8 @@
 
 define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 
-require '../../src/bottle.php';
+// require '../../src/bottle.php';
+require '../../build/bottle.phar';
 
 /**
  * @route /

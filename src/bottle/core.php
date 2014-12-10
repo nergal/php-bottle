@@ -63,6 +63,7 @@ class Bottle_Core {
 
         // giving the route list to each view
         foreach($views_list as $view) {
+
             $view->setRoutes($controllers_list);
         }
 

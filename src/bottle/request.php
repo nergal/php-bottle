@@ -12,8 +12,8 @@ class Bottle_Request {
     * @var string the optional parent dir (allows bottle to be installed in a
     * subdirectory
     */
-
     protected $_docroot = '';
+
     /**
     * @var string
     */
@@ -24,7 +24,7 @@ class Bottle_Request {
     */
     public $route = NULL;
 
-    /*
+    /**
      * @var array
      */
     protected $_params = array();
@@ -43,8 +43,9 @@ class Bottle_Request {
     public function __construct() {
         // @TODO most accurate request reflection
         // truncating the document root
+        $document_root = urldecode($_SERVER['DOCUMENT_ROOT']);
         $docroot = rtrim(dirname(substr($_SERVER['SCRIPT_FILENAME'],
-                                        mb_strlen(rtrim($_SERVER['DOCUMENT_ROOT'],
+                                        mb_strlen(rtrim($document_root,
                                                         '/'),
                                                   'utf-8'
                                                  )
@@ -53,10 +54,9 @@ class Bottle_Request {
                          '/').'/';
         // fixing the dirname() behaviour on windows: we have to delete any \
         $docroot = str_replace('\\', '', $docroot);
-
         $this->_docroot = $docroot;
         // truncating GET params
-        $uri = substr($_SERVER['REQUEST_URI'], strlen($docroot)-1);
+        $uri = substr(urldecode($_SERVER['REQUEST_URI']), strlen($docroot)-1);
         if(strpos($uri, '?') != false) {
             $uri = substr($uri, 0, strpos($uri, '?'));
         }

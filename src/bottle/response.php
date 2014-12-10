@@ -163,7 +163,7 @@ class Bottle_Response {
      *
      * @param string $header
      */
-    public function delHeader($header) {
+    public function deleteHeader($header) {
         if(isset($this->_headers[$header])) {
             unset($this->_headers[$header]);
         }
