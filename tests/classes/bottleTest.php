@@ -78,11 +78,11 @@ EOL;
     function testUrl() {
         $url = $this->buildUrl('url');
         $content = file_get_contents($url);
-        $this->assertEquals('redirected', $content);
+        $this->assertEquals('/redirected', $content);
 
         $url = $this->buildUrl('url2');
         $content = file_get_contents($url);
-        $this->assertEquals('param/name', $content);
+        $this->assertEquals('/param/name', $content);
     }
 
     function testRouteWithNonAscii() {
