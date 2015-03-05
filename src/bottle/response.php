@@ -37,6 +37,14 @@ class Bottle_Response {
         if ($request->route !== NULL) {
             $controller = $request->route->getController();
             $parameters = $request->route->getParameters();
+            $condition = $request->route->getCondition();
+            if($condition) {
+                // calling the condition function
+                $result = $condition[0]($request, $condition[1]);
+                if(!$result) {
+                    throw new Bottle_Forbidden_Exception('Forbidden');
+                }
+            }
 
             $body = $controller->invokeArgs($parameters);
 
@@ -54,7 +62,7 @@ class Bottle_Response {
 
             $this->setBody($body);
         } else {
-            throw new Bottle_Exception('No route found');
+            throw new Bottle_NotFound_Exception('No route found');
         }
 
         $this->send();

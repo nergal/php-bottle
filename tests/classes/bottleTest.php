@@ -100,9 +100,40 @@ EOL;
         }
     }
 
+    function testSimpleCondition() {
+        $url = $this->buildUrl('restricted');
+        $content = file_get_contents($url);
+        $this->assertEquals('OK', $content);
+
+        $url = $this->buildUrl('restricted2');
+        $res = send_request($url);
+        $this->assertEquals(403, $res['httpcode']);
+    }
+
+    function testArgCondition() {
+        $url = $this->buildUrl('restricted3');
+        $content = file_get_contents($url);
+        $this->assertEquals('OK', $content);
+
+        $url = $this->buildUrl('restricted4');
+        $res = send_request($url);
+        $this->assertEquals(403, $res['httpcode']);
+    }
+
+    function testDynArgCondition() {
+        $url = $this->buildUrl('restricted5/url_param');
+        $content = file_get_contents($url);
+        $this->assertEquals('OK', $content);
+
+        $url = $this->buildUrl('restricted5/error');
+        $res = send_request($url);
+        $this->assertEquals(403, $res['httpcode']);
+    }
+
     function testGlobalContext() {
         $url = $this->buildUrl('global-context');
         $content = file_get_contents($url);
         $this->assertEquals('global:local:local2', $content);
     }
+
 }

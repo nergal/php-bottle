@@ -47,6 +47,30 @@ class Bottle_Core {
                                 $views_list[] = $view;
                             }
 
+                            /*
+                             * optional controller condition support
+                             * decorator param may be a single word (function
+                             * name), or a function name followed by an argument
+                             * list (separated by spaces). If an argument starts
+                             * with a $, and the controller also have an
+                             * argument with the same name, that value will be
+                             * passed in the function.
+                             */
+                            if (preg_match('#^( |\t)*\*( )?@requires (?P<condition>.+?)$#umsi', $docline, $matches)) {
+                                // checking if the condition function has params
+                                if(strpos($matches['condition'], ' ')) {
+                                    $condition_parts = explode(' ', $matches['condition']);
+                                    $condition_name = array_shift($condition_parts);
+                                    $route->setCondition($condition_name, $condition_parts);
+                                } else {
+                                    if(!function_exists($matches['condition'])) {
+                                        throw new Bottle_Exception('Unknown condition: '.$matches['condition'].
+                                                                   ' for controller '.$controller->getName());
+                                    }
+                                    $route->setCondition($matches['condition']);
+                                }
+                            }
+
                             $request->setRouter($route);
                             //break;
                         } else {
