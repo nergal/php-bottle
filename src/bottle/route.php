@@ -23,6 +23,16 @@ class Bottle_Route {
     protected $_parameters = array();
 
     /**
+     * Contains the optional routing conditions, as an array containing the
+     * function name and a list (also an array) of parameters that will be
+     * passed as arguments. Thoses parameters may begin with a "$", meaning that
+     * the real value will be picked at runtime from the controller's arguments.
+     *
+     * @var array
+     */
+    protected $_condition = null;
+
+    /**
      * Sets the routing mask
      *
      * @param string
@@ -81,6 +91,35 @@ class Bottle_Route {
     }
 
     /**
+     * Adds a condition function
+     *
+     * @param string $function_name
+     * @param array $params optional array of values that will be passed to the
+     * function. Values beginning with a "$" will be replaced with the
+     * controller parameter with the same name.
+     * @return void
+     */
+    public function setCondition($function_name, $params = []) {
+        $this->_condition = [$function_name, $params];
+
+        foreach($this->getParameters() as $key => $value) {
+            // checking if the parameter name is found in the condition
+            $param_key = array_search('$'.$key, $this->_condition[1]);
+            if($param_key !== false) {
+                $this->_condition[1][$param_key] = $value;
+            }
+        }
+    }
+
+    /**
+     * Gets the condition
+     * @return array
+     */
+    public function getCondition() {
+        return $this->_condition;
+    }
+
+    /**
      * Can the current route serve the given URL?
      *
      * @param string $url
@@ -96,6 +135,7 @@ class Bottle_Route {
             foreach ($matches as $key => $match) {
                 if (!is_numeric($key)) {
                     $this->setParameter($key, $match);
+
                 }
             }
 

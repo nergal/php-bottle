@@ -84,7 +84,9 @@ class Bottle {
         }
         $html.= '</ol></div>';
 
-        if ($e instanceof Bottle_Exception) {
+        if ($e instanceof Bottle_Forbidden_Exception) {
+            header("HTTP/1.0 403 Forbidden");
+        } elseif ($e instanceof Bottle_NotFound_Exception) {
             header("HTTP/1.0 404 Not Found");
         } else {
             header("HTTP/1.0 500 Internal Server Error");
