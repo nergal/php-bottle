@@ -84,3 +84,63 @@ function url2() {
     global $response;
     return $response->getView()->url('param', ['name' => 'name']);
 }
+
+
+/**
+ * Conditions for the following controllers
+ */
+function true_condition($request) {
+    return true;
+}
+
+function false_condition($request) {
+    return false;
+}
+
+function arg_condition($request, $arg) {
+    return $arg[0] == 'arg_0';
+}
+
+function dyn_arg_condition($request, $arg) {
+    return $arg[0] == 'url_param';
+}
+
+/**
+ * @route /restricted
+ * @requires true_condition
+ */
+function restricted() {
+    return 'OK';
+}
+
+/**
+ * @route /restricted2
+ * @requires false_condition
+ */
+function restricted2() {
+    return 'OK';
+}
+
+/**
+ * @route /restricted3
+ * @requires arg_condition arg_0
+ */
+function restricted3() {
+    return 'OK';
+}
+
+/**
+ * @route /restricted4
+ * @requires arg_condition nope
+ */
+function restricted4() {
+    return 'OK';
+}
+
+/**
+ * @route /restricted5/:value
+ * @requires dyn_arg_condition $value
+ */
+function restricted5($value) {
+    return 'OK';
+}
