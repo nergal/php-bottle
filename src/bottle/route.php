@@ -100,7 +100,23 @@ class Bottle_Route {
      * @return void
      */
     public function setCondition($function_name, $params = []) {
-        $this->condition = [$function_name, $params];
+        $this->_condition = [$function_name, $params];
+
+        foreach($this->getParameters() as $key => $value) {
+            // checking if the parameter name is found in the condition
+            $param_key = array_search('$'.$key, $this->_condition[1]);
+            if($param_key !== false) {
+                $this->_condition[1][$param_key] = $value;
+            }
+        }
+    }
+
+    /**
+     * Gets the condition
+     * @return array
+     */
+    public function getCondition() {
+        return $this->_condition;
     }
 
     /**
@@ -119,6 +135,7 @@ class Bottle_Route {
             foreach ($matches as $key => $match) {
                 if (!is_numeric($key)) {
                     $this->setParameter($key, $match);
+
                 }
             }
 

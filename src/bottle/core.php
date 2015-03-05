@@ -58,16 +58,17 @@ class Bottle_Core {
                              */
                             if (preg_match('#^( |\t)*\*( )?@requires (?P<condition>.+?)$#umsi', $docline, $matches)) {
                                 // checking if the condition function has params
-                                if(strpos(' ', $matches['condition'])) {
+                                if(strpos($matches['condition'], ' ')) {
                                     $condition_parts = explode(' ', $matches['condition']);
                                     $condition_name = array_shift($condition_parts);
-                                    $router->setCondition($condition_name, $condition_parts);
+                                    $route->setCondition($condition_name, $condition_parts);
                                 } else {
-                                    if(!function_exists($matches['condition']) {
-                                        throw new Bottle_Exception('Unknown condition: '.matches['condition'].
+                                    if(!function_exists($matches['condition'])) {
+                                        throw new Bottle_Exception('Unknown condition: '.$matches['condition'].
                                                                    ' for controller '.$controller->getName());
                                     }
-                                    $router->setCondition($matches['condition']);
+                                    $route->setCondition($matches['condition']);
+                                }
                             }
 
                             $request->setRouter($route);
