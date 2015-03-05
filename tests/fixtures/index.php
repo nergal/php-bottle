@@ -84,3 +84,15 @@ function url2() {
     global $response;
     return $response->getView()->url('param', ['name' => 'name']);
 }
+
+function global_context($request) {
+    return ['var1' => 'global', 'var2' => 'global2'];
+}
+
+/**
+ * @route /global-context
+ * @view /views/global-context.html
+ */
+function global_context_controller() {
+    return ['var2' => 'local', 'var3' => 'local2'];
+}
