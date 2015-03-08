@@ -25,13 +25,3 @@ Contents:
    reference/request
    reference/response
    reference/templating
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
