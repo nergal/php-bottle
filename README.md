@@ -1,4 +1,4 @@
-# PHP Bottle Web Framework [![Build Status](https://secure.travis-ci.org/nergal/php-bottle.png)](https://secure.travis-ci.org/nergal/php-bottle/)
+# PHP Bottle Web Framework [![Build Status](https://secure.travis-ci.org/nergal/php-bottle.png)](https://secure.travis-ci.org/nergal/php-bottle/)[![Documentation Status](https://readthedocs.org/projects/php-bottle/badge/?version=latest)](https://readthedocs.org/projects/php-bottle/?badge=latest)
 PHP Bottle - PHP micro-framework inspired by minimalistic PyBottle
 
 ## Exampe
