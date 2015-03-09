@@ -3,4 +3,3 @@ MarkupSafe==0.23
 Pygments==2.0.2
 Sphinx==1.2.3
 docutils==0.12
--e git+https://github.com/fabpot/sphinx-php.git@52f7bd2216cc22ef52494f346c5643bb2a74513f#egg=sphinx_php-master
