@@ -257,3 +257,22 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+sys.path.append(os.path.abspath('_exts'))
+
+# ajouter PhpLexer
+from sphinx.highlighting import lexers
+from pygments.lexers.web import PhpLexer
+
+# ...
+# ajoute les extensions à la liste des extensions
+extensions = ['sensio.sphinx.refinclude',
+'sensio.sphinx.configurationblock', 'sensio.sphinx.phpcode']
+
+# active la coloration syntaxique par défaut pour le code PHP qui n'est pas
+# entre ``<?php ... ?>``
+lexers['php'] = PhpLexer(startinline=True)
+lexers['php-annotations'] = PhpLexer(startinline=True)
+
+# ajoute PHP comme domaine principal
+primary_domain = 'php'
