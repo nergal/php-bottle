@@ -277,6 +277,6 @@ lexers['php-annotations'] = PhpLexer(startinline=True)
 # ajoute PHP comme domaine principal
 primary_domain = 'php'
 
-language = 'en'
+language = 'fr'
 locale_dirs = ['locale/']
 gettext_combat = True
