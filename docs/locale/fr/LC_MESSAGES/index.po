@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP-Bottle 0.1.0\n"
@@ -7,39 +7,40 @@ msgstr ""
 "PO-Revision-Date: 2015-03-09 22:10+0100\n"
 "Last-Translator: Damien Nicolas <damien@gordon.re>\n"
 "Language-Team: PHP-Bottle <LL@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
-"Language: fr\n"
 
-#: ../../index.rst:7
+#: ../../index.rst:9
 msgid "Welcome to PHP-Bottle's documentation!"
 msgstr "Bienvenue dans la documentation de PHP-Bottle !"
 
-#: ../../index.rst:9
+#: ../../index.rst:11
 msgid "PHP Bottle - PHP micro-framework inspired by minimalistic PyBottle_."
-msgstr "PHP-Bottle — micro-framework PHP inspiré par le minimaliste PyBottle_."
+msgstr ""
+"PHP-Bottle — micro-framework PHP inspiré par le minimaliste PyBottle_."
 
-#: ../../index.rst:13
+#: ../../index.rst:15
 msgid ""
 "Its goal is to provide a lightweight stack to quickly build modern web "
 "applications in PHP. It provides (M)VC approach, dynamic routing, support "
 "for any kind of templating, and it’s very agnostic."
 msgstr ""
-"Son but est de fournir une pile logicielle légère pour construire rapidement "
-"des applications web modernes en PHP. Il fournit une approche (M)VC, du "
+"Son but est de fournir une pile logicielle légère pour construire rapidement"
+" des applications web modernes en PHP. Il fournit une approche (M)VC, du "
 "routage dynamique, du support pour tout type de templating, et est très "
 "agnostique."
 
-#: ../../index.rst:17
+#: ../../index.rst:19
 msgid ""
 "Here is an example of what you’ll have to write in order to get a dynamic "
 "web application with PHP-Bottle:"
 msgstr ""
-"Voici un exemple de ce que vous auriez à écrire pour obtenir une application "
-"web dynamique avec PHP-Bottle :"
+"Voici un exemple de ce que vous auriez à écrire pour obtenir une application"
+" web dynamique avec PHP-Bottle :"
 
-#: ../../index.rst:66
+#: ../../index.rst:68
 msgid "Contents:"
 msgstr "Contenu :"

@@ -4,13 +4,13 @@ msgstr ""
 "Project-Id-Version: PHP-Bottle 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-09 21:57+0100\n"
-"PO-Revision-Date: 2015-03-09 22:24+0100\n"
+"PO-Revision-Date: 2015-03-09 23:17+0100\n"
 "Last-Translator: Damien Nicolas <damien@gordon.re>\n"
 "Language-Team: PHP-Bottle <LL@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "X-Generator: Poedit 1.5.5\n"
 
 #: ../../quickstart.rst:2
@@ -208,3 +208,82 @@ msgid ""
 "A route can define as many variables as you wish, if you add them as params "
 "for your controller."
 msgstr ""
+"Une route peut définir autant de variables que vous le souhaitez, si vous "
+"les ajoutez également comme paramètres à votre contrôleur."
+
+#: ../../quickstart.rst:109
+msgid "Views"
+msgstr "Vues"
+
+#: ../../quickstart.rst:111
+msgid ""
+"Remember the :ref:`main page <index>`, telling that PHP-Bottle was a (M)VC "
+"framework? Well, we’ve seen the C(ontroller), let’s see the V(iew)."
+msgstr ""
+"Vous vous souvenez de la :ref:`page d’accueil<index>`, indiquant que PHP-"
+"Bottle était un framework (M)VC ? Et bien, nous avons vu le C(ontrôleur), "
+"voyons la V(ue)."
+
+#: ../../quickstart.rst:114
+msgid ""
+"A view is the “how do I show it” part of an application, opposing to a "
+"controller, which is the “what do I show”."
+msgstr ""
+"Une vue représente la partie « comment est-ce que je l’affiche » d’une "
+"application, en opposition au contrôleur, qui est plutôt le « qu’est-ce que "
+"j’affiche »."
+
+#: ../../quickstart.rst:117
+msgid "So basically, a view is a code meant only to display something."
+msgstr ""
+"Donc, basiquement, une vue est une portion de code uniquement destinée à "
+"afficher quelque chose."
+
+#: ../../quickstart.rst:119
+msgid ""
+"PHP-Bottle has chosen to use a well-known template engine to do that: PHP."
+msgstr ""
+"PHP-Bottle a choisi d’utiliser un moteur de templates bien connu : PHP."
+
+#: ../../quickstart.rst:121
+msgid ""
+"In order to use views, you first have to declare one in your decorators. "
+"Here is an example:"
+msgstr ""
+"Pour pouvoir utiliser les vues, vous devez tout d’abord en déclarer dans vos "
+"décorateurs. Voici un exemple :"
+
+#: ../../quickstart.rst:134
+msgid ""
+"The @view decorator links to the position of the view file, relative to the "
+"index.php file. You can use whatever extension you like for the view."
+msgstr ""
+"Le décorateur @view pointe vers la position du fichier de vue, relativement "
+"au fichier index.php. Vous pouvez utiliser n’importe quelle extension pour "
+"la vue."
+
+#: ../../quickstart.rst:137
+msgid ""
+"The second step, after the @view decorator, is to return an associative "
+"array in your controller. Keys of this array will be extracted into vars "
+"available in your view. So, in */views/view-test.php*, you can display the "
+"way you want the *$var* variable, as defined in the controller. Write in */"
+"views/view-test.php*:"
+msgstr ""
+"La seconde étape, après avoir ajouté un décorateur @view, est de retourner "
+"un tableau associatif dans votre contrôleur. Les clés de ce tableau seront "
+"extraites dans des variables disponibles dans votre vue. Donc, dans */views/"
+"view-test.php*, vous pouvez afficher de la façon dont vous voulez la "
+"variable *$var*, telle que définie dans votre contrôleur. Écrivez ceci dans "
+"*/views/view-test.php* :"
+
+#: ../../quickstart.rst:146
+msgid ""
+"Now, open your browser to http://localhost:8000/view-test and observe. You "
+"see a <h1> tag, saying “Hello world”. The last part of this sentence was "
+"given by the controller. It could as well be a dynamic value."
+msgstr ""
+"Maintenant, ouvrez votre navigateur sur http://localhost:8000/view-test et "
+"observez. Vous avez une balise <h1> contenant “Hello world”. La dernière "
+"partie de cette phrase a été fournie par le contrôleur. Il aurait tout aussi "
+"bien pu s’agir d’une valeur dynamique."

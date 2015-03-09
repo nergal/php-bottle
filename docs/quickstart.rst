@@ -87,7 +87,7 @@ Add this to the end of your *index.php* file:
 .. code-block:: php
 
     /**
-     * route /hello/:name
+     * @route /hello/:name
      */
     function hello($name) {
         return 'Hello {$name}!';
@@ -104,3 +104,45 @@ function as the *$name* argument.
 
 A route can define as many variables as you wish, if you add them as params for
 your controller.
+
+Views
+-----
+
+Remember the :ref:`main page <index>`, telling that PHP-Bottle was a (M)VC framework? Well,
+we’ve seen the C(ontroller), let’s see the V(iew).
+
+A view is the “how do I show it” part of an application, opposing to a
+controller, which is the “what do I show”.
+
+So basically, a view is a code meant only to display something.
+
+PHP-Bottle has chosen to use a well-known template engine to do that: PHP.
+
+In order to use views, you first have to declare one in your decorators. Here is
+an example:
+
+.. code-block:: php
+
+    /**
+     * @route /view-test
+     * @view /views/view-test.php
+     */
+    function view_test() {
+        return ['var' => 'world'];
+    }
+
+The @view decorator links to the position of the view file, relative to the
+index.php file. You can use whatever extension you like for the view.
+
+The second step, after the @view decorator, is to return an associative array in
+your controller. Keys of this array will be extracted into vars available in
+your view. So, in */views/view-test.php*, you can display the way you want the
+*$var* variable, as defined in the controller. Write in */views/view-test.php*:
+
+.. code-block:: php+html
+
+    <h1>Hello <?= $var ?></h1>
+
+Now, open your browser to http://localhost:8000/view-test and observe. You see a
+<h1> tag, saying “Hello world”. The last part of this sentence was given by the
+controller. It could as well be a dynamic value.
