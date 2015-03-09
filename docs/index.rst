@@ -14,6 +14,55 @@ Its goal is to provide a lightweight stack to quickly build modern web
 applications in PHP. It provides (M)VC approach, dynamic routing, support for
 any kind of templating, and it’s very agnostic.
 
+Here is an example of what you’ll have to write in order to get a dynamic web
+application with PHP-Bottle:
+
+.. code-block:: php
+
+    <?php
+
+    define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+
+    require_once('bottle.phar');
+
+    /**
+     * This is a condition function for a route.
+     */
+    function authenticated($request) {
+        return $request->getParam('password') == 'bottleisacoolframework';
+    }
+
+    /**
+     * @route /
+     */
+    function index() {
+        return 'Welcome on the Bottle index page!';
+    }
+
+    /**
+     * @route /hello/:name
+     */
+    function hello($name) {
+        return "<h1>Hello, {$name}!</h1>";
+    }
+
+    /**
+     * @route /mul/:num
+     * @view /views/mul.php
+     */
+    function mul($num) {
+        return ['result' => $num * $num];
+    }
+
+    /**
+     * @route /restricted
+     * @requires authenticated
+     * @view /views/restricted.php
+     */
+    function restricted() {
+        return ['status' => 'OK'];
+    }
+
 Contents:
 
 .. toctree::
