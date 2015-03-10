@@ -76,3 +76,4 @@ Contents:
    reference/request
    reference/response
    reference/templating
+   contributing
