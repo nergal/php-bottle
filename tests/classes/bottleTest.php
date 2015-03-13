@@ -130,4 +130,10 @@ EOL;
         $this->assertEquals(403, $res['httpcode']);
     }
 
+    function testGlobalContext() {
+        $url = $this->buildUrl('global-context');
+        $content = file_get_contents($url);
+        $this->assertEquals('global:local:local2', $content);
+    }
+
 }
