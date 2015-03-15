@@ -47,6 +47,19 @@ class Bottle_Response {
             }
 
             $body = $controller->invokeArgs($parameters);
+
+            // if the controller returns an array, we try to call a
+            // "global_context" function, which will add context to $body
+            if(is_array($body)) {
+                if(function_exists('global_context')) {
+                    $context = global_context($request);
+                    if(!is_array($context)) {
+                        throw new Bottle_Exception('global_context function must return an array');
+                    }
+                    $body = array_merge($context, $body);
+                }
+            }
+
             $this->setBody($body);
         } else {
             throw new Bottle_NotFound_Exception('No route found');
