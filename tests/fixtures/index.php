@@ -85,7 +85,6 @@ function url2() {
     return $response->getView()->url('param', ['name' => 'name']);
 }
 
-
 /**
  * Conditions for the following controllers
  */
@@ -143,4 +142,16 @@ function restricted4() {
  */
 function restricted5($value) {
     return 'OK';
+}
+
+function global_context($request) {
+    return ['var1' => 'global', 'var2' => 'global2'];
+}
+
+/**
+ * @route /global-context
+ * @view /views/global-context.html
+ */
+function global_context_controller() {
+    return ['var2' => 'local', 'var3' => 'local2'];
 }
