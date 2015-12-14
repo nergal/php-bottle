@@ -90,7 +90,7 @@ Add this to the end of your *index.php* file:
      * @route /hello/:name
      */
     function hello($name) {
-        return 'Hello {$name}!';
+        return "Hello {$name}!";
     }
 
 Look closely at the defined *route* for this controller: it contains a word
