@@ -1,0 +1,289 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PHP-Bottle 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-09 21:57+0100\n"
+"PO-Revision-Date: 2015-12-14 11:01+0100\n"
+"Last-Translator: Damien Nicolas <damien@gordon.re>\n"
+"Language-Team: PHP-Bottle <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+
+#: ../../quickstart.rst:2
+msgid "Quickstart"
+msgstr "Guide de démarrage rapide"
+
+#: ../../quickstart.rst:4
+msgid ""
+"This short guide will show you how to start a PHP-Bottle project. It should "
+"take only a few minutes to make you understand the basics."
+msgstr ""
+"Ce court guide vous présentera la création d’un projet PHP-Bottle. Il ne "
+"devrait prendre que quelques minutes pour vous faire comprendre les bases."
+
+#: ../../quickstart.rst:8
+msgid "Installation"
+msgstr "Installation"
+
+#: ../../quickstart.rst:10
+msgid ""
+"You first need a working PHP5 environment. An HTTP server is not required "
+"for development."
+msgstr ""
+"Il vous faut tout d’abord un environnement PHP5 fonctionnel. Un serveur HTTP "
+"n’est pas requis pour le développement."
+
+#: ../../quickstart.rst:13
+msgid "Create a directory for your application (let’s call it *projectDir*)"
+msgstr "Créez un dossier pour votre application (appelons-le *dossierProjet*)"
+
+#: ../../quickstart.rst:14
+msgid ""
+"Fetch the last PHP-Bottle archive here: https://github.com/nergal/php-bottle/"
+"raw/master/build/bottle.phar and put it in the root of *projectDir*"
+msgstr ""
+"Récupérez l’archive PHP-Bottle ici : https://github.com/nergal/php-bottle/"
+"raw/master/build/bottle.phar et placez-le à la racine de votre "
+"*dossierProjet*"
+
+#: ../../quickstart.rst:17
+msgid ""
+"Fetch the *.htaccess* file that will enable URL rewriting here: https://"
+"github.com/nergal/php-bottle/raw/master/.htaccess and put it near the "
+"*bottle.phar* file."
+msgstr ""
+"Récupérez le fichier *.htaccess* qui permettra la réécriture d’URL ici : "
+"https://github.com/nergal/php-bottle/raw/master/.htaccess et placez-le près "
+"de votre fichier *bottle.phar*."
+
+#: ../../quickstart.rst:20
+msgid "Create a *views* directory in *projectDir*"
+msgstr "Créez un dossier *views* dans *dossierProjet*"
+
+#: ../../quickstart.rst:22
+msgid "You’re done! Everything is ready to write your first PHP-Bottle page!"
+msgstr ""
+"C’est fait ! Tout est prêt pour que vous puissiez écrire votre première page "
+"avec PHP-Bottle !"
+
+#: ../../quickstart.rst:25
+msgid "First page"
+msgstr "Première page"
+
+#: ../../quickstart.rst:27
+msgid ""
+"Okay, last step was too complicated, I got that. So let’s make things "
+"simpler: just copy that in a *index.php* file:"
+msgstr ""
+"Ok, la dernière étape était trop compliquée, j’ai saisi. Alors baissons d’un "
+"cran la difficulté : copiez simplement ça dans un fichier *index.php* :"
+
+#: ../../quickstart.rst:45
+msgid ""
+"Well, was that too hard? We’re ready to test that. Open a terminal, move to "
+"*projectDir*, and type:"
+msgstr ""
+"Bien, c’était si compliqué ? Nous sommes prêts à tester ça. Ouvrez un "
+"terminal, déplacez-vous dans *dossierProjet*, et tapez :"
+
+#: ../../quickstart.rst:48
+msgid "$ php -S localhost:8000"
+msgstr "$ php -S localhost:8000"
+
+#: ../../quickstart.rst:50
+msgid ""
+"**Don’t close the terminal yet!** We’ve just started a development HTTP "
+"server. Yup, it was embedded in PHP all that time (well, since `PHP "
+"5.4.0`__). Now, just open a web browser to the following URL: http://"
+"localhost:8000 . You should see a page welcoming you. Great, that’s a basic "
+"hello world, and we didn’t have to write a frawemork to do that!"
+msgstr ""
+"**Ne fermez pas encore votre terminal !** Nous avons tout juste démarré un "
+"serveur de développement PHP. Ouaip, c’était inclus dans PHP depuis tout ce "
+"temps (enfin, depuis `PHP 5.4.0`__). Maintenant, il vous suffit d’ouvrir un "
+"navigateur web et de charger l’URL http://localhost:8000 . Vous devriez voir "
+"une page vous accueillant en anglais. Génial, c’est un bête *hello world*, "
+"et il n’était pas nécessaire de développer un framework pour ça !"
+
+#: ../../quickstart.rst:58
+msgid "But let’s make something cooler. Like **dynamic URLs**!"
+msgstr ""
+"Mais nous allons faire quelque chose de plus cool. Comme des **URLs "
+"dynamiques** !"
+
+#: ../../quickstart.rst:61
+msgid "Dynamic URLs"
+msgstr "URLs Dynamiques"
+
+#: ../../quickstart.rst:63
+msgid ""
+"Did you notice the funny comment just before the *index* function? That’s a "
+"**decorator**, but some weird frameworks call that an **annotation**. We’ll "
+"keep the first one."
+msgstr ""
+"Avez-vous remarqué le drôle de commentaire juste au-dessus de la fonction "
+"*index* ? C’est un **décorateur**, mais certains frameworks bizarres "
+"appellent ça une **annotation**. On s’en tiendra à la première version."
+
+#: ../../quickstart.rst:67
+msgid ""
+"That decorator tells PHP-Bottle when to call that function: in this case, "
+"when an URL matching “/” is found. Try this: change that line, replacing “/” "
+"by “my/dynamic/url”. Refresh the page (no need to restart the development "
+"server we started before), and don’t fear: you just met a 404 error."
+msgstr ""
+"Ce décorateur indique à PHP-Bottle quand appeler cette fonction : en "
+"l’occurrence, quand une URL correspondant à « / » est trouvée. Essayez ça : "
+"modifiez cette ligne, et remplacez « / » par « /mon/url/dynamique ». "
+"Rechargez la page (il n’y a pas besoin de redémarrer le serveur de "
+"développement que nous avons lancé plus tôt), et ne paniquez pas : vous "
+"venez de rencontrer une erreur 404."
+
+#: ../../quickstart.rst:72
+msgid ""
+"Why? Because no function (we call these *controllers*) has been registered "
+"for the “/” URL. In other words, the requested page is not found."
+msgstr ""
+"Pourquoi ? Parce qu’aucune fonction (qu’on appellera **contrôleur**) n’a été "
+"enregistré pour traiter l’URL « / ». En d’autres termes, la page demandée "
+"est introuvable."
+
+#: ../../quickstart.rst:75
+msgid ""
+"But what if you try to get to http://localhost:8000/my/dynamic/url ? Right, "
+"your welcome message is here. We changed the *route* decorator, and it "
+"literally changed the URL of our page."
+msgstr ""
+"Mais que se passe-t-il si vous allez sur la page http://localhost:8000/mon/"
+"url/dynamique ? Bien, notre message d’accueil est de nouveau là. Nous avons "
+"modifié le décorateur *route*, et il a littéralement modifié l’URL de notre "
+"page."
+
+#: ../../quickstart.rst:79
+msgid ""
+"For the next step, we should go back to an index page routed on the */* URL. "
+"So go back to the “First page” example."
+msgstr ""
+"Pour l’étape suivante, il vaut mieux repartir sur l’ancienne version de la "
+"page d’index, où celle-ci était routée sur l’URL */*. Alors repartons sur "
+"l’exemple « Première page »."
+
+#: ../../quickstart.rst:83
+msgid "Multiple pages"
+msgstr "Plusieurs pages"
+
+#: ../../quickstart.rst:85
+msgid "Add this to the end of your *index.php* file:"
+msgstr "Ajoutez ceci à la fin de votre fichier *index.php* :"
+
+#: ../../quickstart.rst:96
+msgid ""
+"Look closely at the defined *route* for this controller: it contains a word "
+"prefixed by a colon. That means the “:name” is a variable, a dynamic part of "
+"a (already dynamic) URL. You can call whatever URL beginning by “/hello/”, "
+"and the rest will be in the $name variable. Try it, with http://"
+"localhost:8000/hello/world , then replace “world” by your own name."
+msgstr ""
+"Regardez attentivement la *route* définie pour ce contrôleur. Elle contient "
+"un mot préfixé d’un deux-points. Cela signifie que « :name » est une "
+"variable, une partie dynamique d’une URL (elle-même déjà dynamique). Vous "
+"pouvez appeler n’importe quelle URL commençant par « /hello/ », et le reste "
+"sera passé dans votre variable $name. Essayez ça, avec http://localhost:8000/"
+"hello/world, puis remplacez « world » par votre propre nom."
+
+#: ../../quickstart.rst:102
+msgid ""
+"You can see that the “:name” part of the URL is indeed given to the "
+"*hello()* function as the *$name* argument."
+msgstr ""
+"Vous voyez que la partie « :name » de l’URL est effectivement passée en "
+"paramètre à la fonction *hello()* en tant que *$name*."
+
+#: ../../quickstart.rst:105
+msgid ""
+"A route can define as many variables as you wish, if you add them as params "
+"for your controller."
+msgstr ""
+"Une route peut définir autant de variables que vous le souhaitez, si vous "
+"les ajoutez également comme paramètres à votre contrôleur."
+
+#: ../../quickstart.rst:109
+msgid "Views"
+msgstr "Vues"
+
+#: ../../quickstart.rst:111
+msgid ""
+"Remember the :ref:`main page <index>`, telling that PHP-Bottle was a (M)VC "
+"framework? Well, we’ve seen the C(ontroller), let’s see the V(iew)."
+msgstr ""
+"Vous vous souvenez de la :ref:`page d’accueil<index>`, indiquant que PHP-"
+"Bottle était un framework (M)VC ? Et bien, nous avons vu le C(ontrôleur), "
+"voyons la V(ue)."
+
+#: ../../quickstart.rst:114
+msgid ""
+"A view is the “how do I show it” part of an application, opposing to a "
+"controller, which is the “what do I show”."
+msgstr ""
+"Une vue représente la partie « comment est-ce que je l’affiche » d’une "
+"application, en opposition au contrôleur, qui est plutôt le « qu’est-ce que "
+"j’affiche »."
+
+#: ../../quickstart.rst:117
+msgid "So basically, a view is a code meant only to display something."
+msgstr ""
+"Donc, basiquement, une vue est une portion de code uniquement destinée à "
+"afficher quelque chose."
+
+#: ../../quickstart.rst:119
+msgid ""
+"PHP-Bottle has chosen to use a well-known template engine to do that: PHP."
+msgstr ""
+"PHP-Bottle a choisi d’utiliser un moteur de templates bien connu : PHP."
+
+#: ../../quickstart.rst:121
+msgid ""
+"In order to use views, you first have to declare one in your decorators. "
+"Here is an example:"
+msgstr ""
+"Pour pouvoir utiliser les vues, vous devez tout d’abord en déclarer dans vos "
+"décorateurs. Voici un exemple :"
+
+#: ../../quickstart.rst:134
+msgid ""
+"The @view decorator links to the position of the view file, relative to the "
+"index.php file. You can use whatever extension you like for the view."
+msgstr ""
+"Le décorateur @view pointe vers la position du fichier de vue, relativement "
+"au fichier index.php. Vous pouvez utiliser n’importe quelle extension pour "
+"la vue."
+
+#: ../../quickstart.rst:137
+msgid ""
+"The second step, after the @view decorator, is to return an associative "
+"array in your controller. Keys of this array will be extracted into vars "
+"available in your view. So, in */views/view-test.php*, you can display the "
+"way you want the *$var* variable, as defined in the controller. Write in */"
+"views/view-test.php*:"
+msgstr ""
+"La seconde étape, après avoir ajouté un décorateur @view, est de retourner "
+"un tableau associatif dans votre contrôleur. Les clés de ce tableau seront "
+"extraites dans des variables disponibles dans votre vue. Donc, dans */views/"
+"view-test.php*, vous pouvez afficher de la façon dont vous voulez la "
+"variable *$var*, telle que définie dans votre contrôleur. Écrivez ceci dans "
+"*/views/view-test.php* :"
+
+#: ../../quickstart.rst:146
+msgid ""
+"Now, open your browser to http://localhost:8000/view-test and observe. You "
+"see a <h1> tag, saying “Hello world”. The last part of this sentence was "
+"given by the controller. It could as well be a dynamic value."
+msgstr ""
+"Maintenant, ouvrez votre navigateur sur http://localhost:8000/view-test et "
+"observez. Vous avez une balise <h1> contenant “Hello world”. La dernière "
+"partie de cette phrase a été fournie par le contrôleur. Il aurait tout aussi "
+"bien pu s’agir d’une valeur dynamique."
